@@ -12,7 +12,9 @@
     "build": "npm run build-renderer && npm run build-electron",
     "pack-app": "npm run build && electron-builder --dir",
     "dist": "npm run build && electron-builder",
-    "type-check": "tsc"
+    "type-check": "tsc",
+    "lint": "eslint './{electron-src,main,renderer}/**/*.{ts,tsx}'",
+    "lint-fix": "eslint --fix './{electron-src,main,renderer}/**/*.{ts,tsx}' && prettier --write './{electron-src,main,renderer}/**/*.{ts,tsx}'"
   },
   "dependencies": {
     "electron-is-dev": "^1.1.0",
@@ -29,9 +31,11 @@
     "electron": "^10.1.5",
     "electron-builder": "^22.9.1",
     "eslint": "^7.24.0",
+    "eslint-config-prettier": "^8.2.0",
     "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-react-hooks": "^4.2.0",
     "next": "latest",
+    "prettier": "^2.2.1",
     "rimraf": "^3.0.0",
     "typescript": "^4.0.5"
   },
