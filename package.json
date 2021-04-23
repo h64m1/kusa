@@ -36,6 +36,7 @@
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "babel-loader": "^8.2.2",
+    "cz-conventional-changelog": "^3.3.0",
     "electron": "^10.1.5",
     "electron-builder": "^22.9.1",
     "eslint": "^7.24.0",
@@ -53,5 +54,10 @@
       "main",
       "renderer/out"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
