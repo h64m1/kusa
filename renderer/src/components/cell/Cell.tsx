@@ -16,3 +16,7 @@ export const Component: React.VFC<Props> = (props) => {
     )
 }
 
+const Container: React.VFC<ContainerProps> = (props) => {
+    return <Component stack={0} />
+}
+
