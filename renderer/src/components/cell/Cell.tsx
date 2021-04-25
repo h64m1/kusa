@@ -4,19 +4,20 @@ type ContainerProps = {
     stack?: number // 0 <= stack <= 1
 }
 
-type Props = Required<ContainerProps>
+type Props = {
+    backgroundColor: string // color code
+}
 
 export const Component: React.VFC<Props> = (props) => {
-    // TODO: convert props.stack to color
-    const color = '#000'
     return (
         <div style={{
-            backgroundColor: color
+            backgroundColor: props.backgroundColor
         }}></div>
     )
 }
 
 const Container: React.VFC<ContainerProps> = (props) => {
-    return <Component stack={0} />
+    // TODO: convert props.stack to color
+    return <Component backgroundColor={'#000'} />
 }
 
