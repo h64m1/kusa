@@ -11,7 +11,7 @@ type CellLevel = 'Lowest' | 'Low' | 'Middle' | 'High' | 'Highest'
  * @returns cell level
  */
 const cellLevelFrom = (stack: bigint): CellLevel => {
-	if (stack === 0n || stack > 100n) {
+	if (stack <= 0n || stack > 100n) {
 		return 'Lowest'
 	} else if (stack < 25n) {
 		return 'Low'
