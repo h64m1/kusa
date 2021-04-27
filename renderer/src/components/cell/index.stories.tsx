@@ -5,7 +5,7 @@ import { Cell, CellProps } from './index'
 
 // export const Primary: React.VFC = () => <Cell backgroundColor={'#000'} />
 export default {
-  title: 'Example/Cell',
+  title: 'components/Cell',
   component: Cell,
   argTypes: {
     backgroundColor: { control: 'color' },

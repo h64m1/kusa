@@ -1,23 +1,25 @@
 import 'tailwindcss/tailwind.css'
+import * as Presenter from './presenter'
 
 type ContainerProps = {
-	stack?: number // 0 <= stack <= 1
+	/**
+	 * 0 <= stack <= 100
+	 */
+	stack: bigint
 }
 
 type Props = {
-    /**
-     * What class to be used for cell
-     */
+	/**
+	 * What class to be used for cell
+	 */
 	className: string
 }
 
-// type CellLevel = 'Lowest' | 'Low' | 'Middle' | 'High' | 'Highest'
-
 export type StyledProps = {
-    /**
-     * What background color class
-     */
-    backgroundColorClass: string
+	/**
+	 * What background color class
+	 */
+	backgroundColorClass: string
 }
 
 const Component: React.VFC<Props> = (props) => {
@@ -25,13 +27,15 @@ const Component: React.VFC<Props> = (props) => {
 }
 
 export const StyledComponent: React.VFC<StyledProps> = (props) => {
-    const shapeProps = 'w-4 h-4 rounded border border-black'
-    const backgroundColor = props.backgroundColorClass
+	const shapeProps = 'w-4 h-4 rounded border border-black'
+	const backgroundColor = props.backgroundColorClass
 
 	return <Component className={`${shapeProps} ${backgroundColor}`} />
 }
 
-const Container: React.VFC<ContainerProps> = (props) => {
-	// TODO: convert props.stack to color
-	return <StyledComponent backgroundColorClass={'bg-green-100'} />
+export const Container: React.VFC<ContainerProps> = (props) => {
+	// convert props.stack to background color
+	const backgroundColor = Presenter.backgroundColor(props.stack)
+
+	return <StyledComponent backgroundColorClass={backgroundColor} />
 }
