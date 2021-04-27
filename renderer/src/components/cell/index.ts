@@ -1,2 +1,2 @@
-export { Component as Cell } from './Cell'
-export type { Props as CellProps } from './Cell'
+export { StyledComponent as Cell } from './Cell'
+export type { StyledProps as CellProps } from './Cell'
