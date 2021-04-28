@@ -41,14 +41,14 @@ export const backgroundColor = (stack: bigint): BackgroundColor => {
 
 	switch (cellLevel) {
 		case 'Lowest':
-			return 'bg-green-900'
-		case 'Low':
-			return 'bg-green-700'
-		case 'Middle':
-			return 'bg-green-500'
-		case 'High':
-			return 'bg-green-300'
-		case 'Highest':
 			return 'bg-gray-900'
+		case 'Low':
+			return 'bg-green-900'
+		case 'Middle':
+			return 'bg-green-700'
+		case 'High':
+			return 'bg-green-500'
+		case 'Highest':
+			return 'bg-green-300'
 	}
 }
