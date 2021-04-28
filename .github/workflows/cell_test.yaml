@@ -10,7 +10,12 @@ on:
 jobs:
   cell_test:
     name: jest cell test
-    runs-on: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
     steps:
       - name: checkout repository
         uses: actions/checkout@v2
