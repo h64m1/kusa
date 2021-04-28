@@ -1,0 +1,7 @@
+{
+	"extends": "../renderer/tsconfig.json",
+	"include": ["./**/*"],
+	"compilerOptions": {
+		"jsx": "react-jsx"
+	}
+}
