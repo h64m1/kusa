@@ -1,6 +1,9 @@
 import * as Presenter from '../presenter'
 
 test('cell presenter: background color', () => {
+    // github actions test: fail
+    expect(Presenter.backgroundColor(0n)).toBe('bg-green-900')
+
     // Lowest
     expect(Presenter.backgroundColor(0n)).toBe('bg-gray-900')
     expect(Presenter.backgroundColor(-10n)).toBe('bg-gray-900')
