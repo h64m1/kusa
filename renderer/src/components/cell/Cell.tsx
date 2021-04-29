@@ -1,7 +1,7 @@
 import 'tailwindcss/tailwind.css'
 import * as Presenter from './presenter'
 
-type ContainerProps = {
+export type ContainerProps = {
 	/**
 	 * 0 <= stack <= 100
 	 */
