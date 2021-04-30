@@ -5,7 +5,7 @@ export type ContainerProps = {
 	/**
 	 * 0 <= stack <= 100
 	 */
-	stack: bigint
+	stack: number
 }
 
 type Props = {

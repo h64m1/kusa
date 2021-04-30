@@ -7,17 +7,17 @@ type CellLevel = 'Lowest' | 'Low' | 'Middle' | 'High' | 'Highest'
 
 /**
  * Convert stack (0-100) into cell level string
- * @param {bigint} stack 0-100
+ * @param {number} stack 0-100
  * @returns cell level
  */
-const cellLevelFrom = (stack: bigint): CellLevel => {
-	if (stack <= 0n || stack > 100n) {
+const cellLevelFrom = (stack: number): CellLevel => {
+	if (stack <= 0 || stack > 100) {
 		return 'Lowest'
-	} else if (stack <= 25n) {
+	} else if (stack <= 25) {
 		return 'Low'
-	} else if (stack <= 50n) {
+	} else if (stack <= 50) {
 		return 'Middle'
-	} else if (stack <= 75n) {
+	} else if (stack <= 75) {
 		return 'High'
 	} else {
 		return 'Highest'
@@ -36,7 +36,7 @@ type BackgroundColor =
  * @param {bigint} stack 0-100
  * @returns background color classname
  */
-export const backgroundColor = (stack: bigint): BackgroundColor => {
+export const backgroundColor = (stack: number): BackgroundColor => {
 	const cellLevel = cellLevelFrom(stack)
 
 	switch (cellLevel) {
