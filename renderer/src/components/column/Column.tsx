@@ -1,20 +1,20 @@
-import { CellContainer, CellContainerProps } from '../cell'
+import { CellContainer } from '../cell'
 
-type ContainerProps = {
-    /**
-     * Array of stacks
-     * - 0 <= stack <= 100
-     */
+export type ContainerProps = {
+	/**
+	 * Array of stacks
+	 * - 0 <= stack <= 100
+	 */
 	stacks: Array<number>
 }
 
 export type StyledProps = ContainerProps
 
 type Props = {
-    /**
-     * What class to be used for Column
-     */
-    className: string
+	/**
+	 * What class to be used for Column
+	 */
+	className: string
 } & ContainerProps
 
 const Component: React.VFC<Props> = (props) => {
@@ -23,10 +23,14 @@ const Component: React.VFC<Props> = (props) => {
 			{props.stacks.map((e, i) => (
 				<CellContainer key={i} stack={e} />
 			))}
-        </div>
+		</div>
 	)
 }
 
 export const StyledComponent: React.VFC<StyledProps> = (props) => {
-    return <Component className="flex-col" stacks={props.stacks} />
+	return <Component className="flex-col space-y-1" stacks={props.stacks} />
+}
+
+export const Container: React.VFC<ContainerProps> = (props) => {
+	return <StyledComponent stacks={props.stacks} />
 }
