@@ -5,6 +5,12 @@ type Props = {
     stacks: number[]
 }
 
+export type StyledProps = Props
+
 const Component: React.VFC<Props> = (props) => {
-    return <GridContainer stacks={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 30, 31]} />
+    return <GridContainer stacks={props.stacks} />
+}
+
+export const StyledComponent: React.VFC<StyledProps> = (props) => {
+    return <Component stacks={props.stacks} />
 }
