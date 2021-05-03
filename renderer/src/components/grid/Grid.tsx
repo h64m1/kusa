@@ -1,18 +1,42 @@
 import { CellContainer } from '../cell'
 
-export type ContainerProps = {
-	/**
-	 * Array of stacks
-	 */
-	stacks: number[]
+type GridCell = {
+    /**
+     * date: YYYY-MM-DD format
+     */
+    date: string
+    /**
+     * 0 <= stack <= 100
+     */
+    stack: number
 }
+
+type ContainerProps = {
+    /**
+     * begin date: YYYY-MM-DD
+     */
+    beginDate: string
+    /**
+     * end date: YYYY-MM-DD
+     */
+    endDate: string
+    /**
+     * Active cell
+     */
+    stacks: GridCell[]
+}
+
 
 type Props = {
 	/**
 	 * What class to be used for Column
 	 */
 	className?: string
-} & ContainerProps
+	/**
+	 * Array of stacks
+	 */
+	stacks: number[]
+}
 
 export type StyledProps = Props
 
@@ -36,5 +60,8 @@ export const StyledComponent: React.VFC<StyledProps> = (props) => {
 }
 
 export const Container: React.VFC<ContainerProps> = (props) => {
-	return <StyledComponent stacks={props.stacks} />
+	// FIXME: convert GridCell array to number array
+	const stacks = props.stacks.map(e => e.stack)
+
+	return <StyledComponent stacks={stacks} />
 }
