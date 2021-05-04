@@ -1,4 +1,6 @@
 import { CellContainer } from '../cell'
+import * as Presenter from './presenter'
+import { day } from '../../../../lib/day'
 
 type GridCell = {
     /**
@@ -11,7 +13,7 @@ type GridCell = {
     stack: number
 }
 
-type ContainerProps = {
+export type ContainerProps = {
     /**
      * begin date: YYYY-MM-DD
      */
@@ -60,8 +62,19 @@ export const StyledComponent: React.VFC<StyledProps> = (props) => {
 }
 
 export const Container: React.VFC<ContainerProps> = (props) => {
-	// FIXME: convert GridCell array to number array
-	const stacks = props.stacks.map(e => e.stack)
+	// array of dates from beginDate to endDate
+	const dates = Presenter.gridCells(props.beginDate, props.endDate)
+
+	// Convert GridCell array to number array
+	const stacks = dates.map(date => {
+		// Find the same date from props.stacks, return stack
+		const cell = props.stacks.find(e => day.isSame(e.date, date))
+		if (cell === undefined) {
+			return 0
+		}
+
+		return cell.stack
+	})
 
 	return <StyledComponent stacks={stacks} />
 }
