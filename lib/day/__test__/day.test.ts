@@ -15,4 +15,10 @@ test('test day library', () => {
     // Difference
     expect(day.diff('2021-04-01', '2020-04-01')).toBe(365)
     expect(day.diff('2021-05-01', '2021-05-01')).toBe(0)
+
+    // startOf/endOf
+    expect(day.startOf('2021-05-04', 'week')).toBe('2021-05-02')
+    expect(day.startOf('2021-05-04', 'month')).toBe('2021-05-01')
+    expect(day.endOf('2021-05-04', 'week')).toBe('2021-05-08')
+    expect(day.endOf('2021-05-04', 'month')).toBe('2021-05-31')
 })
