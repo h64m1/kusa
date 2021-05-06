@@ -1,10 +1,19 @@
 import { CellContainer } from '../cell'
+import * as Presenter from './presenter'
 
 export type ContainerProps = {
 	/**
-	 * Array of stacks
+	 * begin date: YYYY-MM-DD
 	 */
-	stacks: number[]
+	beginDate: string
+	/**
+	 * end date: YYYY-MM-DD
+	 */
+	endDate: string
+	/**
+	 * Active cell
+	 */
+	stacks: Presenter.GridCell[]
 }
 
 type Props = {
@@ -12,7 +21,11 @@ type Props = {
 	 * What class to be used for Column
 	 */
 	className?: string
-} & ContainerProps
+	/**
+	 * Array of stacks
+	 */
+	stacks: number[]
+}
 
 export type StyledProps = Props
 
@@ -36,5 +49,11 @@ export const StyledComponent: React.VFC<StyledProps> = (props) => {
 }
 
 export const Container: React.VFC<ContainerProps> = (props) => {
-	return <StyledComponent stacks={props.stacks} />
+	// array of dates from beginDate to endDate
+	const dates = Presenter.gridCells(props.beginDate, props.endDate)
+
+	// Convert GridCell array to number array
+	const stacks = Presenter.findStackCells(dates, props.stacks)
+
+	return <StyledComponent stacks={stacks} />
 }
