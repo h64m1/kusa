@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react';
-import { Week, WeekProps } from './index'
+import { Week } from './index'
 
 export default {
   title: 'components/Week',
@@ -8,8 +8,7 @@ export default {
 //   },
 } as Meta;
 
-const Template: Story<WeekProps> = (args) => <Week {...args} />;
-
+const Template: Story = (args) => <Week {...args} />;
 
 export const WeekTest = Template.bind({});
 WeekTest.args = {
