@@ -1,8 +1,4 @@
-type ContainerProps = {
-	/**
-	 * What class to be used for months
-	 */
-	className: string
+export type ContainerProps = {
 	/**
 	 * What months to be shown
 	 */
@@ -11,12 +7,16 @@ type ContainerProps = {
 
 type Props = {
 	/**
+	 * What class to be used for months
+	 */
+	className: string
+	/**
 	 * What class to be used for parent
 	 */
 	parentClassName?: string
 } & ContainerProps
 
-export type StyledProps = Props
+export type StyledProps = ContainerProps
 
 const Component: React.VFC<Props> = (props) => {
 	return (
@@ -36,8 +36,12 @@ export const StyledComponent: React.VFC<StyledProps> = (props) => {
 	return (
 		<Component
 			parentClassName="grid grid-flow-col grid-row-1 auto-cols-min gap-1"
-			className='w-4 text-xs'
+			className="w-4 text-xs"
 			months={props.months}
 		/>
 	)
+}
+
+export const Container: React.VFC<ContainerProps> = (props) => {
+	return <StyledComponent months={props.months} />
 }
