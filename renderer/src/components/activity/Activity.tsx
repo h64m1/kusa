@@ -2,18 +2,24 @@ import { GridContainer, GridContainerProps } from '../grid'
 import { WeekContainer } from '../week'
 import { MonthContainer } from '../month'
 
+type CommonProps = {
+	/**
+	 * What months to be shown on top of grid container
+	 */
+	months: string[]
+}
+
+export type ContainerProps = GridContainerProps
+
 type Props = {
 	/**
 	 * What class to be used for Activity
 	 */
 	className?: string
-	/**
-	 * What months to be shown on top of grid container
-	 */
-	months: string[]
-} & GridContainerProps
+} & GridContainerProps &
+	CommonProps
 
-export type StyledProps = Props
+export type StyledProps = GridContainerProps & CommonProps
 
 const Component: React.VFC<Props> = (props) => {
 	return (
@@ -41,4 +47,11 @@ export const StyledComponent: React.VFC<StyledProps> = (props) => {
 			{..._props}
 		/>
 	)
+}
+
+export const Container: React.VFC<ContainerProps> = (props) => {
+	// FIXME: implement months
+	const months: string[] = []
+
+	return <StyledComponent months={months} {...props} />
 }
