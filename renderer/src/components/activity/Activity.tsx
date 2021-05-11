@@ -52,7 +52,9 @@ export const StyledComponent: React.VFC<StyledProps> = (props) => {
 
 export const Container: React.VFC<ContainerProps> = (props) => {
 	// Show months (Jan, Feb, ...) on grid cells
-	const months = Presenter.months(props.beginDate, props.endDate)
+	const _months = Presenter.months(props.beginDate, props.endDate)
+	// Trim first & last elements
+	const months = Presenter.trim(_months)
 
 	return <StyledComponent months={months} {...props} />
 }

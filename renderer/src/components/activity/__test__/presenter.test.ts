@@ -9,4 +9,10 @@ test('activity presenter: month names', () => {
     expect(Presenter.months('2021-09-16', '2021-10-09')).toEqual(['Sep', '', '', 'Oct'])
     // []
     expect(Presenter.months('2021-04-01', '2021-02-01')).toEqual([])
+
+    // test trim
+    // ['', 'Jan', '']
+    expect(Presenter.trim(Presenter.months('2020-12-28', '2021-01-11'))).toEqual(['', 'Jan', ''])
+    // ['Dec', '', 'Jan', '']
+    expect(Presenter.trim(Presenter.months('2020-12-23', '2021-01-11'))).toEqual(['Dec', '', 'Jan', ''])
 })
