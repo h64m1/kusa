@@ -1,6 +1,7 @@
 import { GridContainer, GridContainerProps } from '../grid'
 import { WeekContainer } from '../week'
 import { MonthContainer } from '../month'
+import * as Presenter from './presenter'
 
 type CommonProps = {
 	/**
@@ -50,8 +51,8 @@ export const StyledComponent: React.VFC<StyledProps> = (props) => {
 }
 
 export const Container: React.VFC<ContainerProps> = (props) => {
-	// FIXME: implement months
-	const months: string[] = []
+	// Show months (Jan, Feb, ...) on grid cells
+	const months = Presenter.months(props.beginDate, props.endDate)
 
 	return <StyledComponent months={months} {...props} />
 }

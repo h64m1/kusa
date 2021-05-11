@@ -4,6 +4,15 @@ import dayjs from 'dayjs'
 const FORMAT_DATE = 'YYYY-MM-DD'
 
 /**
+ * month index (0 start)
+ * @param {string} date date
+ * @returns month index
+ */
+export const month = (date: string): number => {
+    return dayjs(date).get('month')
+}
+
+/**
  * Add amount to date
  * @param {string} date date
  * @param {number} amount to be added
