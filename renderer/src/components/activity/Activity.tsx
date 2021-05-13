@@ -2,6 +2,7 @@ import { GridContainer, GridContainerProps } from '../grid'
 import { WeekContainer } from '../week'
 import { MonthContainer } from '../month'
 import * as Presenter from './presenter'
+import { LegendContainer } from '../legend'
 
 type CommonProps = {
 	/**
@@ -24,7 +25,7 @@ export type StyledProps = GridContainerProps & CommonProps
 
 const Component: React.VFC<Props> = (props) => {
 	return (
-		<>
+		<div className="w-max">
 			<MonthContainer months={props.months} />
 			<div className="flex flex-row space-x-1">
 				<WeekContainer />
@@ -34,7 +35,10 @@ const Component: React.VFC<Props> = (props) => {
 					stacks={props.stacks}
 				/>
 			</div>
-		</>
+			<div className="mt-2 flex justify-end">
+				<LegendContainer />
+			</div>
+		</div>
 	)
 }
 
