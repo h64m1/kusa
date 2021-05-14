@@ -1,6 +1,6 @@
 import './tooltip.css'
 
-type Props = {
+export type ContainerProps = {
 	/**
 	 * What message to be shown in the tooltip
 	 */
@@ -11,6 +11,7 @@ type Props = {
 	contents: string
 }
 
+type Props = ContainerProps
 export type StyledProps = Props
 
 const Component: React.VFC<Props> = (props) => {
@@ -25,6 +26,15 @@ const Component: React.VFC<Props> = (props) => {
 export const StyledComponent: React.VFC<StyledProps> = (props) => {
 	return (
 		<Component
+			tooltipMessage={props.tooltipMessage}
+			contents={props.contents}
+		/>
+	)
+}
+
+export const Container: React.VFC<ContainerProps> = (props) => {
+	return (
+		<StyledComponent
 			tooltipMessage={props.tooltipMessage}
 			contents={props.contents}
 		/>
