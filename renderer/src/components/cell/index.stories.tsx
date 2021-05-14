@@ -1,9 +1,6 @@
-
-
 import { Story, Meta } from '@storybook/react';
 import { Cell, CellProps } from './index'
 
-// export const Primary: React.VFC = () => <Cell backgroundColor={'#000'} />
 export default {
   title: 'components/Cell',
   component: Cell,
