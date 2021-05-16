@@ -1,24 +1,40 @@
 import { CellContainer } from '../cell'
 
 type Props = {
-    /**
-     * What class to be used for Legend
-     */
-    className: string
+	/**
+	 * What class to be used for Legend
+	 */
+	className: string
 }
 
 const Component: React.VFC<Props> = (props) => {
-    const textSize = 'text-xs'
+	const textSize = 'text-xs'
 	return (
 		<div className={props.className}>
 			<div className={textSize}>Low</div>
-			<CellContainer stack={0} />
-			<CellContainer stack={25} />
-			<CellContainer stack={50} />
-			<CellContainer stack={75} />
-			<CellContainer stack={100} />
+			<CellContainer date={'2000-01-01'} stack={0} stackNormalized={0} />
+			<CellContainer
+				date={'2000-01-01'}
+				stack={25}
+				stackNormalized={25}
+			/>
+			<CellContainer
+				date={'2000-01-01'}
+				stack={50}
+				stackNormalized={50}
+			/>
+			<CellContainer
+				date={'2000-01-01'}
+				stack={75}
+				stackNormalized={75}
+			/>
+			<CellContainer
+				date={'2000-01-01'}
+				stack={100}
+				stackNormalized={100}
+			/>
 			<div className={textSize}>High</div>
-        </div>
+		</div>
 	)
 }
 
