@@ -1,5 +1,4 @@
 import 'tailwindcss/tailwind.css'
-import { TooltipContainer } from '../tooltip'
 import * as Presenter from './presenter'
 
 export type ContainerProps = {
@@ -45,11 +44,5 @@ export const StyledComponent: React.VFC<StyledProps> = (props) => {
 export const Container: React.VFC<ContainerProps> = (props) => {
 	// convert props.stack to background color
 	const backgroundColor = Presenter.backgroundColor(props.stackNormalized)
-	const contents = <StyledComponent backgroundColorClass={backgroundColor} />
-	return (
-		<TooltipContainer
-			tooltipMessage={`${props.stack} on ${props.date}`}
-			contents={contents}
-		/>
-	)
+	return <StyledComponent backgroundColorClass={backgroundColor} />
 }

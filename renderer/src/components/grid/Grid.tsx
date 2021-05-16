@@ -1,4 +1,5 @@
 import { CellContainer } from '../cell'
+import { TooltipContainer } from '../tooltip'
 import * as Presenter from './presenter'
 
 export type ContainerProps = {
@@ -44,12 +45,18 @@ const Component: React.VFC<Props> = (props) => {
 				const date = e
 				const stack = props.stacks[i]
 				const stackNormalized = props.stacksNormalized[i]
-				return (
+				const cell = (
 					<CellContainer
-						key={i}
 						date={date}
 						stack={stack}
 						stackNormalized={stackNormalized}
+					/>
+				)
+				return (
+					<TooltipContainer
+						key={i}
+						tooltipMessage={`${stack} on ${date}`}
+						contents={cell}
 					/>
 				)
 			})}
