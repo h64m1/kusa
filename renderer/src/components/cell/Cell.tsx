@@ -1,13 +1,6 @@
-import { MouseEventHandler } from 'react'
 import 'tailwindcss/tailwind.css'
+import { TooltipContainer } from '../tooltip'
 import * as Presenter from './presenter'
-
-type CommonProps = {
-	/**
-	 * Event handler on focus
-	 */
-	onHover: MouseEventHandler<HTMLDivElement>
-}
 
 export type ContainerProps = {
 	/**
@@ -29,44 +22,34 @@ type Props = {
 	 * What class to be used for cell
 	 */
 	className: string
-} & CommonProps
+}
 
 export type StyledProps = {
 	/**
 	 * What background color class
 	 */
 	backgroundColorClass: string
-} & CommonProps
+}
 
 const Component: React.VFC<Props> = (props) => {
-	return (
-		<div className={props.className} onMouseEnter={props.onHover}>
-			&nbsp;
-		</div>
-	)
+	return <div className={props.className}>&nbsp;</div>
 }
 
 export const StyledComponent: React.VFC<StyledProps> = (props) => {
 	const shapeProps = 'w-4 h-4 rounded border border-black'
 	const backgroundColor = props.backgroundColorClass
 
-	return (
-		<Component
-			className={`${shapeProps} ${backgroundColor}`}
-			onHover={props.onHover}
-		/>
-	)
+	return <Component className={`${shapeProps} ${backgroundColor}`} />
 }
 
 export const Container: React.VFC<ContainerProps> = (props) => {
 	// convert props.stack to background color
 	const backgroundColor = Presenter.backgroundColor(props.stackNormalized)
+	const contents = <StyledComponent backgroundColorClass={backgroundColor} />
 	return (
-		<StyledComponent
-			backgroundColorClass={backgroundColor}
-			onHover={() => {
-				return console.debug('props', props)
-			}}
+		<TooltipContainer
+			tooltipMessage={`${props.stack} on ${props.date}`}
+			contents={contents}
 		/>
 	)
 }
