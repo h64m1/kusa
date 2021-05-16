@@ -17,9 +17,9 @@ test('grid presenter: create date cells', () => {
 test('grid presenter: find stacks from dates array', () => {
 	const dates = Presenter.gridCells('2021-05-01', '2021-05-03')
 	const cells = [
-		{ date: '2021-05-01', stack: 10 },
-		{ date: '2021-05-02', stack: 70 },
-		{ date: '2021-05-03', stack: 40 },
+		{ date: '2021-05-01', stack: 10 , stackNormalized: 10 },
+		{ date: '2021-05-02', stack: 70 , stackNormalized: 70 },
+		{ date: '2021-05-03', stack: 40 , stackNormalized: 40 },
 	]
 	// From 2021-04-25 to 2021-05-08
 	const stacks = Presenter.findStackCells(dates, cells)
@@ -28,4 +28,16 @@ test('grid presenter: find stacks from dates array', () => {
 	expect(stacks[6]).toBe(10) // 2021-05-03
 	expect(stacks[7]).toBe(70) // 2021-05-03
 	expect(stacks[8]).toBe(40) // 2021-05-03
+})
+
+test('grid presenter: normalize stack', () => {
+	// normalization
+	const stacks = [0, 236, 560, 1200, 110] // sum = 2106
+	const norm = Presenter.normalize(stacks)
+	expect(norm.length).toBe(5)
+	expect(norm[0]).toBe(0) // 0
+	expect(norm[1]).toBe(11) // 236/2106 * 100 = 11.2 => 11
+	expect(norm[2]).toBe(27) // 560/2106 * 100 = 26.59 => 27
+	expect(norm[3]).toBe(57) // 1200/2106 * 100 = 56.98 => 57
+	expect(norm[4]).toBe(5) // 110/2106 * 100 = 5.22 => 5
 })

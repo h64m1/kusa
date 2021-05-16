@@ -62,3 +62,15 @@ export const findStackCells = (
 		return cell.stack
 	})
 }
+
+/**
+ * Normalize stack value to [0, 100]
+ * @param {number[]} stacks Array of stacks
+ * @returns Array of normalized stacks
+ */
+export const normalize = (stacks: number[]): number[] => {
+	// sum of all values
+	const sum = stacks.reduce((prev, current) => prev + current)
+	// calculate average
+	return stacks.map((e) => Math.round((e * 100) / sum))
+}

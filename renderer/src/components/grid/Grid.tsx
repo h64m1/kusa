@@ -69,13 +69,12 @@ export const StyledComponent: React.VFC<StyledProps> = (props) => {
 }
 
 export const Container: React.VFC<ContainerProps> = (props) => {
-	// array of dates from beginDate to endDate
+	// Array of dates from beginDate to endDate
 	const dates = Presenter.gridCells(props.beginDate, props.endDate)
-
 	// Convert GridCell array to number array
 	const stacks = Presenter.findStackCells(dates, props.stacks)
-	// TODO: calculate normalized stacks
-	const stacksNormalized = stacks
+	// Calculate normalized stacks
+	const stacksNormalized = Presenter.normalize(stacks)
 
 	return (
 		<StyledComponent
