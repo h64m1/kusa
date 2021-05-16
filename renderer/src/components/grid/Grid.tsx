@@ -22,9 +22,17 @@ type Props = {
 	 */
 	className?: string
 	/**
+	 * Array of date
+	 */
+	dates: string[]
+	/**
 	 * Array of stacks
 	 */
 	stacks: number[]
+	/**
+	 * Array of normalized stacks
+	 */
+	stacksNormalized: number[]
 }
 
 export type StyledProps = Props
@@ -32,9 +40,19 @@ export type StyledProps = Props
 const Component: React.VFC<Props> = (props) => {
 	return (
 		<div className={props.className}>
-			{props.stacks.map((e, i) => (
-				<CellContainer key={i} stack={e} />
-			))}
+			{props.dates.map((e, i) => {
+				const date = e
+				const stack = props.stacks[i]
+				const stackNormalized = props.stacksNormalized[i]
+				return (
+					<CellContainer
+						key={i}
+						date={date}
+						stack={stack}
+						stackNormalized={stackNormalized}
+					/>
+				)
+			})}
 		</div>
 	)
 }
@@ -43,7 +61,9 @@ export const StyledComponent: React.VFC<StyledProps> = (props) => {
 	return (
 		<Component
 			className="grid grid-flow-col grid-rows-7 auto-cols-min gap-1"
+			dates={props.dates}
 			stacks={props.stacks}
+			stacksNormalized={props.stacksNormalized}
 		/>
 	)
 }
@@ -54,6 +74,14 @@ export const Container: React.VFC<ContainerProps> = (props) => {
 
 	// Convert GridCell array to number array
 	const stacks = Presenter.findStackCells(dates, props.stacks)
+	// TODO: calculate normalized stacks
+	const stacksNormalized = stacks
 
-	return <StyledComponent stacks={stacks} />
+	return (
+		<StyledComponent
+			dates={dates}
+			stacks={stacks}
+			stacksNormalized={stacksNormalized}
+		/>
+	)
 }

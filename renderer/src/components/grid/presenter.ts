@@ -6,9 +6,13 @@ export type GridCell = {
 	 */
 	date: string
 	/**
-	 * 0 <= stack <= 100
+	 * original stack value
 	 */
 	stack: number
+	/**
+	 * 0 <= stack <= 100
+	 */
+	stackNormalized: number
 }
 
 /**
