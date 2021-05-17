@@ -1,4 +1,4 @@
-import { CellContainer } from '../cell'
+import { CellContainer } from '../../components/cell'
 
 export type ContainerProps = {
 	/**

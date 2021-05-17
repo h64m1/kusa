@@ -1,5 +1,5 @@
-import { CellContainer } from '../cell'
-import { TooltipContainer } from '../tooltip'
+import { CellContainer } from '../../components/cell'
+import { TooltipContainer } from '../../components/tooltip'
 import * as Presenter from './presenter'
 
 export type ContainerProps = {
