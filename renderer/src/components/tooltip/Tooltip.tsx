@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import './tooltip.css'
 
 export type ContainerProps = {
@@ -8,7 +9,7 @@ export type ContainerProps = {
 	/**
 	 * What contents to be shown
 	 */
-	contents: string
+	contents: ReactNode
 }
 
 type Props = ContainerProps
