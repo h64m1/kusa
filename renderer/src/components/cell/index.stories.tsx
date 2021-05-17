@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react';
-import { Cell, CellProps } from './index'
+import { Cell, CellProps, CellContainer, CellContainerProps } from './index'
 
 export default {
   title: 'components/Cell',
@@ -10,7 +10,7 @@ export default {
 } as Meta;
 
 const Template: Story<CellProps> = (args) => <Cell {...args} />;
-
+const TemplateContainer: Story<CellContainerProps> = (args) => <CellContainer {...args} />;
 
 //   * 0: タスクなし: #161b22, rgb(22, 27, 34)
 export const Lowest = Template.bind({});
@@ -41,3 +41,10 @@ export const Highest = Template.bind({});
 Highest.args = {
     backgroundColorClass: 'bg-green-300'
 };
+
+export const ContainerTest = TemplateContainer.bind({})
+ContainerTest.args = {
+    date: '2021-05-15',
+    stack: 233,
+    stackNormalized: 50,
+}

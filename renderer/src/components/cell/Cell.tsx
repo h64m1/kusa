@@ -3,9 +3,17 @@ import * as Presenter from './presenter'
 
 export type ContainerProps = {
 	/**
-	 * 0 <= stack <= 100
+	 * date (YYYY-MM-DD)
+	 */
+	date: string
+	/**
+	 * original stack value
 	 */
 	stack: number
+	/**
+	 * 0 <= stack <= 100
+	 */
+	stackNormalized: number
 }
 
 type Props = {
@@ -35,7 +43,6 @@ export const StyledComponent: React.VFC<StyledProps> = (props) => {
 
 export const Container: React.VFC<ContainerProps> = (props) => {
 	// convert props.stack to background color
-	const backgroundColor = Presenter.backgroundColor(props.stack)
-
+	const backgroundColor = Presenter.backgroundColor(props.stackNormalized)
 	return <StyledComponent backgroundColorClass={backgroundColor} />
 }

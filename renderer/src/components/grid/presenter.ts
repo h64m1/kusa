@@ -6,7 +6,7 @@ export type GridCell = {
 	 */
 	date: string
 	/**
-	 * 0 <= stack <= 100
+	 * original stack value
 	 */
 	stack: number
 }
@@ -58,4 +58,21 @@ export const findStackCells = (
 
 		return cell.stack
 	})
+}
+
+/**
+ * Normalize stack value to [0, 100]
+ * @param {number[]} stacks Array of stacks
+ * @returns Array of normalized stacks
+ */
+export const normalize = (stacks: number[]): number[] => {
+	// maximum
+	const max = Math.max(...stacks)
+	// return original stacks if max = 0
+	if (max === 0) {
+		return stacks
+	}
+
+	// calculate average
+	return stacks.map((e) => Math.round((e * 100) / max))
 }
