@@ -15,6 +15,7 @@ export type GridCell = {
  * Create celss from beginDate to endDate
  * @param {string} beginDate begin date for grid cells
  * @param {string} endDate end date for grid cells
+ * @returns array of dates
  */
 export const gridCells = (beginDate: string, endDate: string): string[] => {
 	const cells: string[] = []
