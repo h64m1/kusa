@@ -36,8 +36,8 @@ test('grid presenter: normalize stack', () => {
 	const norm = Presenter.normalize(stacks)
 	expect(norm.length).toBe(5)
 	expect(norm[0]).toBe(0) // 0
-	expect(norm[1]).toBe(11) // 236/2106 * 100 = 11.2 => 11
-	expect(norm[2]).toBe(27) // 560/2106 * 100 = 26.59 => 27
-	expect(norm[3]).toBe(57) // 1200/2106 * 100 = 56.98 => 57
-	expect(norm[4]).toBe(5) // 110/2106 * 100 = 5.22 => 5
+	expect(norm[1]).toBe(20) // 236/1200 = 0.1966 ~ 20
+	expect(norm[2]).toBe(47) // 560/1200 = 0.4666 ~ 47
+	expect(norm[3]).toBe(100) // 1200/1200 = 100
+	expect(norm[4]).toBe(9) // 110/1200 = 0.0916 ~ 9
 })
