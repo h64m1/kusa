@@ -1,8 +1,8 @@
 import { GridContainer, GridContainerProps } from '../grid'
-import { WeekContainer } from '../week'
-import { MonthContainer } from '../month'
-import * as Presenter from './presenter'
 import { LegendContainer } from '../legend'
+import { MonthContainer } from '../month'
+import { WeekContainer } from '../week'
+import * as Presenter from './presenter'
 
 type CommonProps = {
 	/**
