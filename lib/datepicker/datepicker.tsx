@@ -3,10 +3,6 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 export type ContainerProps = {
 	/**
-	 * What class to be used
-	 */
-	className: string
-	/**
 	 * Selected date
 	 */
 	selected: Date
@@ -16,8 +12,14 @@ export type ContainerProps = {
 	onChange?: (date: Date) => void
 }
 
-type Props = ContainerProps
-export type StyledProps = Props
+type Props = {
+	/**
+	 * What class to be used
+	 */
+	className: string
+} & ContainerProps
+
+export type StyledProps = ContainerProps
 
 const Component: React.VFC<Props> = (props) => {
 	const format = 'yyyy-MM-dd'
@@ -32,9 +34,14 @@ const Component: React.VFC<Props> = (props) => {
 }
 
 export const StyledComponent: React.VFC<StyledProps> = (props) => {
+	const inputClassCommon =
+		'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight'
+	const inputClassFocus = 'focus:outline-none focus:shadow-outline'
+	const inputClass = `${inputClassCommon} ${inputClassFocus}`
+
 	return (
 		<Component
-			className={props.className}
+			className={inputClass}
 			selected={props.selected}
 			onChange={props.onChange}
 		/>
@@ -44,7 +51,6 @@ export const StyledComponent: React.VFC<StyledProps> = (props) => {
 export const Container: React.VFC<ContainerProps> = (props) => {
 	return (
 		<StyledComponent
-			className={props.className}
 			selected={props.selected}
 			onChange={props.onChange}
 		/>
