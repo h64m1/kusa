@@ -1,2 +1,2 @@
-export { StyledComponent as DatePicker } from './datepicker'
-export { StyledProps as DatePickerProps } from './datepicker'
+export { StyledComponent as DatePicker } from './DatePicker'
+export { StyledProps as DatePickerProps } from './DatePicker'
