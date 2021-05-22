@@ -3,7 +3,7 @@ import { Grid, GridProps } from './index'
 import { GridContainer, GridContainerProps } from './index'
 
 export default {
-	title: 'components/Grid',
+	title: 'templates/Grid',
 	component: Grid,
 } as Meta
 
