@@ -1,8 +1,6 @@
+import { LabelContainer, LabelContainerProps } from '../label'
+
 export type ContainerProps = {
-	/**
-	 * What label to be shown
-	 */
-	label: string
 	/**
 	 * What value to be used for form
 	 */
@@ -14,18 +12,14 @@ export type ContainerProps = {
 	/**
 	 * Input type
 	 */
-	inputType: string
+	inputType?: string
 	/**
 	 * Input placeHolder
 	 */
 	inputPlaceHolder: string
-}
+} & LabelContainerProps
 
 type Props = {
-	/**
-	 * What class to be applied for label
-	 */
-	labelClassName?: string
 	/**
 	 * What class to be applied for input
 	 */
@@ -35,21 +29,21 @@ type Props = {
 export type StyledProps = ContainerProps
 
 const Component: React.VFC<Props> = (props) => {
+	const inputType = props.inputType ?? 'text'
 	return (
 		<>
-			<label className={props.labelClassName}>{props.label}</label>
+			<LabelContainer label={props.label} />
 			<input
 				className={props.inputClassName}
 				id={props.inputId}
-				type={props.inputType}
+				type={inputType}
 				placeholder={props.inputPlaceHolder}
 			/>
 		</>
 	)
 }
 
-export const StyledComponent: React.VFC<Props> = (props) => {
-	const labelClass = 'block text-gray-700 text-sm font-bold mb-2'
+export const StyledComponent: React.VFC<StyledProps> = (props) => {
 	const inputClassCommon =
 		'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight'
 	const inputClassFocus = 'focus:outline-none focus:shadow-outline'
@@ -58,12 +52,23 @@ export const StyledComponent: React.VFC<Props> = (props) => {
 	return (
 		<Component
 			label={props.label}
-			labelClassName={labelClass}
 			inputClassName={inputClass}
 			inputId={props.inputId}
 			inputType={props.inputType}
 			inputPlaceHolder={props.inputPlaceHolder}
 			value={props.value}
+		/>
+	)
+}
+
+export const Container: React.VFC<ContainerProps> = (props) => {
+	return (
+		<StyledComponent
+			label={props.label}
+			value={props.value}
+			inputId={props.inputPlaceHolder}
+			inputType={props.inputType}
+			inputPlaceHolder={props.inputPlaceHolder}
 		/>
 	)
 }

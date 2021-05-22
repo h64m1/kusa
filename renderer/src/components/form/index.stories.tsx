@@ -13,6 +13,6 @@ FormTest.args = {
 	label: 'Date',
 	value: '2021-05-01',
 	inputId: 'date',
-	inputType: 'date',
-	inputPlaceHolder: 'Date',
+	inputType: 'text',
+	inputPlaceHolder: 'Write down date by YYYY-MM-DD format',
 }
