@@ -3,7 +3,7 @@ import { Column, ColumnProps } from './index'
 
 // export const Primary: React.VFC = () => <Cell backgroundColor={'#000'} />
 export default {
-	title: 'components/Column',
+	title: 'templates/Column',
 	component: Column,
 } as Meta
 

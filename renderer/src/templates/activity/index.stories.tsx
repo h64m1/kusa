@@ -3,7 +3,7 @@ import { Meta, Story } from '@storybook/react'
 import { Activity, ActivityContainer, ActivityContainerProps, ActivityProps } from './index'
 
 export default {
-	title: 'components/Activity',
+	title: 'templates/Activity',
 	component: Activity,
 } as Meta
 
