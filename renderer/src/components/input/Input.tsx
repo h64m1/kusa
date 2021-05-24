@@ -30,10 +30,11 @@ const Component: React.VFC<Props> = (props) => {
 	const type = props.type ?? 'text'
 	return (
 		<input
-			className={props.className}
+			value={props.value}
 			id={props.id}
 			type={type}
 			placeholder={props.placeHolder}
+			className={props.className}
 		/>
 	)
 }
@@ -45,11 +46,11 @@ export const StyledComponent: React.VFC<StyledProps> = (props) => {
 	const className = `${classCommon} ${classFocus}`
 	return (
 		<Component
-			className={className}
+			value={props.value}
 			id={props.id}
 			type={props.type}
 			placeHolder={props.placeHolder}
-			value={props.value}
+			className={className}
 		/>
 	)
 }

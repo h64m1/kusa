@@ -9,7 +9,7 @@ export type ContainerProps = {
 	/**
 	 * onChange handler
 	 */
-	onChange?: (date: Date) => void
+	onChange: (date: Date) => void
 }
 
 type Props = {
