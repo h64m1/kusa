@@ -2,7 +2,7 @@ import { Story, Meta } from '@storybook/react'
 import { Form, FormProps } from './index'
 
 export default {
-	title: 'components/Form',
+	title: 'templates/Form',
 	component: Form
 } as Meta
 
