@@ -1,3 +1,5 @@
+import { ChangeEventHandler } from 'react'
+
 export type ContainerProps = {
 	/**
 	 * What value to be used for form
@@ -15,6 +17,10 @@ export type ContainerProps = {
 	 * Input placeHolder
 	 */
 	placeHolder: string
+	/**
+	 * change event handler
+	 */
+	onChange: ChangeEventHandler<HTMLInputElement>
 }
 
 type Props = {
@@ -35,6 +41,7 @@ const Component: React.VFC<Props> = (props) => {
 			type={type}
 			placeholder={props.placeHolder}
 			className={props.className}
+			onChange={props.onChange}
 		/>
 	)
 }
@@ -51,6 +58,7 @@ export const StyledComponent: React.VFC<StyledProps> = (props) => {
 			type={props.type}
 			placeHolder={props.placeHolder}
 			className={className}
+			onChange={props.onChange}
 		/>
 	)
 }
@@ -59,9 +67,10 @@ export const Container: React.VFC<ContainerProps> = (props) => {
 	return (
 		<StyledComponent
 			value={props.value}
-			id={props.placeHolder}
+			id={props.id}
 			type={props.type}
 			placeHolder={props.placeHolder}
+			onChange={props.onChange}
 		/>
 	)
 }
