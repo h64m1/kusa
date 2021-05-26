@@ -16,6 +16,7 @@ const Component: React.VFC<Props> = (props) => {
 				id={props.id}
 				type={props.type}
 				placeHolder={props.placeHolder}
+				onChange={props.onChange}
 			/>
 		</>
 	)
@@ -29,6 +30,7 @@ export const StyledComponent: React.VFC<StyledProps> = (props) => {
 			type={props.type}
 			placeHolder={props.placeHolder}
 			value={props.value}
+			onChange={props.onChange}
 		/>
 	)
 }
@@ -41,6 +43,7 @@ export const Container: React.VFC<ContainerProps> = (props) => {
 			id={props.placeHolder}
 			type={props.type}
 			placeHolder={props.placeHolder}
+			onChange={props.onChange}
 		/>
 	)
 }
