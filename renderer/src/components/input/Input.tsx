@@ -48,7 +48,7 @@ const Component: React.VFC<Props> = (props) => {
 
 export const StyledComponent: React.VFC<StyledProps> = (props) => {
 	const classCommon =
-		'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight'
+		'shadow appearance-none border rounded w-10/12 py-2 px-3 text-gray-700 leading-tight'
 	const classFocus = 'focus:outline-none focus:shadow-outline'
 	const className = `${classCommon} ${classFocus}`
 	return (
