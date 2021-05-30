@@ -1,6 +1,13 @@
 import React from 'react'
 
-export const useActivities = (initialValue: string[]) => {
+type UseActivitiesReturnType = {
+	activities: string[]
+	pushActivity: () => void
+}
+
+export const useActivities = (
+	initialValue: string[],
+): UseActivitiesReturnType => {
 	const [activities, setActivities] = React.useState(initialValue)
 
 	// push new activity
@@ -8,5 +15,5 @@ export const useActivities = (initialValue: string[]) => {
 		setActivities(() => [...activities, ''])
 	}
 
-	return [activities, { setActivities, pushActivity }] as const
+	return { activities, pushActivity }
 }
