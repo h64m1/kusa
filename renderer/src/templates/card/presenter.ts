@@ -3,6 +3,7 @@ import React from 'react'
 type UseActivitiesReturnType = {
 	activities: string[]
 	pushActivity: () => void
+    removeActivity: (i: number) => void
 }
 
 export const useActivities = (
@@ -15,5 +16,13 @@ export const useActivities = (
 		setActivities(() => [...activities, ''])
 	}
 
-	return { activities, pushActivity }
+	// remove specified element from activities
+	const removeActivity = (i: number) => {
+		if (activities.length > 1) {
+			// do not remove last element
+			setActivities([...activities.filter((_, j) => j !== i)])
+		}
+	}
+
+	return { activities, pushActivity, removeActivity }
 }
