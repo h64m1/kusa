@@ -11,27 +11,29 @@ test('activities custom hook', () => {
     act(() => {
         result.current.pushActivity()
     })
-
     expect(result.current.activities).toStrictEqual([''])
 
     // [''] -> ['','']
     act(() => {
         result.current.pushActivity()
     })
-
     expect(result.current.activities).toStrictEqual(['',''])
 
-    // remove 1st activity
+    // ['','test']
     act(() => {
-        result.current.removeActivity(0)
+        result.current.changeActivity(1, 'test')
     })
+    expect(result.current.activities).toStrictEqual(['','test'])
 
+    // remove 2nd activity
+    act(() => {
+        result.current.removeActivity(1)
+    })
     expect(result.current.activities).toStrictEqual([''])
 
     // do not remove last element
     act(() => {
         result.current.removeActivity(0)
     })
-
     expect(result.current.activities).toStrictEqual([''])
 })
