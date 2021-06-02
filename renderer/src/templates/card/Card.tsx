@@ -1,7 +1,7 @@
-import { useState } from 'react'
 import { DatePickerContainer } from '../../../../lib/DatePicker'
 import { InputContainer } from '../../components/input'
 import { LabelContainer } from '../../components/label'
+import * as Presenter from './presenter'
 
 export type ContainerProps = {
 	/**
@@ -14,7 +14,12 @@ type Props = ContainerProps
 export type StyledProps = Props
 
 const Component: React.VFC<Props> = (props) => {
-	const [activities, setActivities] = useState([''])
+	const {
+		activities,
+		pushActivity,
+		removeActivity,
+		changeActivity,
+	} = Presenter.useActivities([])
 
 	const _date = new Date(props.date)
 	return (
@@ -24,7 +29,7 @@ const Component: React.VFC<Props> = (props) => {
 				<LabelContainer label="日付" />
 				<DatePickerContainer
 					selected={_date}
-					onChange={(e) => {
+					onChange={() => {
 						// console.debug(e)
 					}}
 				/>
@@ -35,39 +40,23 @@ const Component: React.VFC<Props> = (props) => {
 			) : (
 				<div>
 					<LabelContainer label="アクティビティ" />
-					{activities.map((e, i) => {
+					{activities.map((activity, i) => {
 						const id = `${props.date}-activity-${i}`
 						return (
 							<div key={i} className="flex flex-row space-x-1">
 								<InputContainer
-									value={e}
+									value={activity}
 									id={id}
 									placeHolder="アクティビティ"
 									onChange={(e) => {
-										activities[i] = e.target.value
-										setActivities(() => [...activities])
-										console.debug(
-											'input.onChagne',
-											e.target.value,
-										)
+										changeActivity(i, e.target.value)
 									}}
 								/>
 								{/* ボタン押下でアクティビティ削除 | TODO: Replace Del to trash icon */}
 								<button
 									className="hover:bg-gray-50 font-bold py-2 px-3 rounded w-1/12 text-left"
 									onClick={() => {
-										if (activities.length > 1) {
-											// do not remove last element
-											setActivities([
-												...activities.filter(
-													(_, j) => j !== i,
-												),
-											])
-										}
-										console.debug(
-											'Delete activity',
-											activities.length,
-										)
+										removeActivity(i)
 									}}
 								>
 									Del
@@ -78,9 +67,8 @@ const Component: React.VFC<Props> = (props) => {
 					{/* ボタン押下でアクティビティ追加 */}
 					<button
 						className="hover:bg-gray-100 font-bold py-2 px-4 rounded w-10/12 text-left"
-						onClick={(e) => {
-							setActivities(() => [...activities, ''])
-							console.debug('add input:', activities.length)
+						onClick={() => {
+							pushActivity()
 						}}
 					>
 						+ New
