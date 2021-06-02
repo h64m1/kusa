@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import './tooltip.module.css'
+import styles from './tooltip.module.css'
 
 export type ContainerProps = {
 	/**
@@ -17,8 +17,8 @@ export type StyledProps = Props
 
 const Component: React.VFC<Props> = (props) => {
 	return (
-		<span className="tooltip">
-			<span className="tooltip-text">{props.tooltipMessage}</span>
+		<span className={styles.tooltip}>
+			<span className={styles.tooltipText}>{props.tooltipMessage}</span>
 			{props.contents}
 		</span>
 	)
