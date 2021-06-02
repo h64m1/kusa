@@ -1,4 +1,4 @@
-import { day } from '../../../../lib/day'
+import { day } from '../../../lib/day'
 import { gridCells } from '../grid/presenter'
 
 const monthNames = [

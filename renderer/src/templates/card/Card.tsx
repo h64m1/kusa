@@ -1,4 +1,4 @@
-import { DatePickerContainer } from '../../../../lib/DatePicker'
+import { DatePickerContainer } from '../../../lib/DatePicker'
 import { InputContainer } from '../../components/input'
 import { LabelContainer } from '../../components/label'
 import * as Presenter from './presenter'
