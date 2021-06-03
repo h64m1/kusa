@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { ActivityContainer } from '../src/templates/activity'
 import Layout from '../components/Layout'
+import { day } from '../lib/day'
 
 const IndexPage = () => {
 	useEffect(() => {
@@ -14,11 +15,14 @@ const IndexPage = () => {
 		global.ipcRenderer.send('message', 'hi from next')
 	}
 
+	const endDate = day.today()
+	const beginDate = day.add(endDate, -1, 'year')
+
 	return (
 		<Layout title="Home | Next.js + TypeScript + Electron Example">
 			<ActivityContainer
-				beginDate='2021-05-02'
-				endDate='2021-06-02'
+				beginDate={beginDate}
+				endDate={endDate}
 				stacks={[]}
 			/>
 		</Layout>
