@@ -1,6 +1,17 @@
 import { day } from '../'
 
+const getDate = (): string => {
+    const today = new Date()
+    const y = today.getFullYear()
+    const m = ('00' + (today.getMonth()+1)).slice(-2);
+    const d = ('00' + today.getDate()).slice(-2);
+    return `${y}-${m}-${d}`
+}
+
 test('test day library', () => {
+    // Today
+    expect(day.today()).toBe(getDate())
+
     // Add
     // Long unit type
     expect(day.add('2021-04-05', 1, 'day')).toBe('2021-04-06')

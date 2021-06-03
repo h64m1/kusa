@@ -4,6 +4,14 @@ import dayjs from 'dayjs'
 const FORMAT_DATE = 'YYYY-MM-DD'
 
 /**
+ * Today's date
+ * @returns today
+ */
+export const today = (): string => {
+    return dayjs().format(FORMAT_DATE)
+}
+
+/**
  * month index (0 start)
  * @param {string} date date
  * @returns month index
