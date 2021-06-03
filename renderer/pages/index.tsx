@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import Link from 'next/link'
+import { ActivityContainer } from '../src/templates/activity'
 import Layout from '../components/Layout'
 
 const IndexPage = () => {
@@ -16,13 +16,11 @@ const IndexPage = () => {
 
 	return (
 		<Layout title="Home | Next.js + TypeScript + Electron Example">
-			<h1>Hello Next.js 👋</h1>
-			<button onClick={onSayHiClick}>Say hi to electron</button>
-			<p>
-				<Link href="/about">
-					<a>About</a>
-				</Link>
-			</p>
+			<ActivityContainer
+				beginDate='2021-05-02'
+				endDate='2021-06-02'
+				stacks={[]}
+			/>
 		</Layout>
 	)
 }
