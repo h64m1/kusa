@@ -34,6 +34,10 @@ type Props = {
 	 * Array of normalized stacks
 	 */
 	stacksNormalized: number[]
+	/**
+	 * Hide if hide props = true
+	 */
+	hide: boolean[]
 }
 
 export type StyledProps = Props
@@ -42,6 +46,11 @@ const Component: React.VFC<Props> = (props) => {
 	return (
 		<div className={props.className}>
 			{props.dates.map((e, i) => {
+				if (props.hide[i]) {
+					// hide cell
+					return <div />
+				}
+
 				const date = e
 				const stack = props.stacks[i]
 				const stackNormalized = props.stacksNormalized[i]
@@ -71,6 +80,7 @@ export const StyledComponent: React.VFC<StyledProps> = (props) => {
 			dates={props.dates}
 			stacks={props.stacks}
 			stacksNormalized={props.stacksNormalized}
+			hide={props.hide}
 		/>
 	)
 }
@@ -82,12 +92,15 @@ export const Container: React.VFC<ContainerProps> = (props) => {
 	const stacks = Presenter.findStackCells(dates, props.stacks)
 	// Calculate normalized stacks
 	const stacksNormalized = Presenter.normalize(stacks)
+	// true if date > today
+	const hide = Presenter.hide(dates)
 
 	return (
 		<StyledComponent
 			dates={dates}
 			stacks={stacks}
 			stacksNormalized={stacksNormalized}
+			hide={hide}
 		/>
 	)
 }

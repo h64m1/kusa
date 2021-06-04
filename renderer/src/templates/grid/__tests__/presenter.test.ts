@@ -1,4 +1,5 @@
 import * as Presenter from '../presenter'
+import { day } from '../../../../../lib/day'
 
 test('grid presenter: create date cells', () => {
 	// if beginDate == endDate = 2021-05-01
@@ -40,4 +41,17 @@ test('grid presenter: normalize stack', () => {
 	expect(norm[2]).toBe(47) // 560/1200 = 0.4666 ~ 47
 	expect(norm[3]).toBe(100) // 1200/1200 = 100
 	expect(norm[4]).toBe(9) // 110/1200 = 0.0916 ~ 9
+})
+
+test('grid presenter: hide cells', () => {
+	const today = day.today()
+	const dates  = Presenter.gridCells(today, today)
+	const hide = Presenter.hide(dates)
+
+	const length = hide.length
+	expect(length).toBe(7)
+	for (let i=0; i<length; i++) {
+		const isHide = day.diff(today, dates[i]) < 0
+		expect(hide[i]).toBe(isHide)
+	}
 })
