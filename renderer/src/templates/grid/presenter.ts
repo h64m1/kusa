@@ -76,3 +76,15 @@ export const normalize = (stacks: number[]): number[] => {
 	// calculate average
 	return stacks.map((e) => Math.round((e * 100) / max))
 }
+
+/**
+ * Hide cells if date > today
+ * @param {string[]} dates array of dates
+ * @returns Array of hide flag
+ */
+export const hide = (dates: string[]): boolean[] => {
+	const today = day.today()
+	return dates.map(e => {
+		return day.diff(today, e) < 0
+	})
+}

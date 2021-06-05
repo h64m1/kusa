@@ -32,12 +32,28 @@ GridTest.args = {
 	],
 	stacks: [0, 10, 20, 50, 70, 90, 0, 100, 0, 0, 25, 75, 50, 10],
 	stacksNormalized: [0, 10, 20, 50, 70, 90, 0, 100, 0, 0, 25, 75, 50, 10],
+	hide: [
+		false,
+		false,
+		false,
+		false,
+		false,
+		false,
+		false,
+		false,
+		false,
+		false,
+		true,
+		true,
+		true,
+		true,
+	],
 }
 
 export const GridContainerTest = TemplateContainer.bind({})
 GridContainerTest.args = {
-	beginDate: '2020-05-04',
-	endDate: '2021-05-04',
+	beginDate: '2020-06-30',
+	endDate: '2021-06-30',
 	stacks: [
 		{ date: '2021-04-25', stack: 60 },
 		{ date: '2021-04-26', stack: 8 },
