@@ -48,7 +48,7 @@ const Component: React.VFC<Props> = (props) => {
 			{props.dates.map((e, i) => {
 				if (props.hide[i]) {
 					// hide cell
-					return <div />
+					return <div key={i} />
 				}
 
 				const date = e
@@ -56,6 +56,7 @@ const Component: React.VFC<Props> = (props) => {
 				const stackNormalized = props.stacksNormalized[i]
 				const cell = (
 					<CellContainer
+						key={i}
 						date={date}
 						stack={stack}
 						stackNormalized={stackNormalized}

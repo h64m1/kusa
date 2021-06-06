@@ -1,5 +1,5 @@
 import * as Presenter from '../presenter'
-import { day } from '../../../../../lib/day'
+import { day } from '../../../../lib/day'
 
 test('grid presenter: create date cells', () => {
 	// if beginDate == endDate = 2021-05-01
