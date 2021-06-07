@@ -19,7 +19,7 @@ const IndexPage = () => {
 	const beginDate = day.add(endDate, -1, 'year')
 
 	return (
-		<Layout title="Home | Next.js + TypeScript + Electron Example">
+		<Layout title="Activity list" className="ml-8">
 			<ActivityContainer
 				beginDate={beginDate}
 				endDate={endDate}

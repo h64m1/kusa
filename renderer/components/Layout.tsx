@@ -5,9 +5,14 @@ import Head from 'next/head'
 type Props = {
 	children: ReactNode
 	title?: string
+	className?: string
 }
 
-const Layout = ({ children, title = 'This is the default title' }: Props) => (
+const Layout = ({
+	children,
+	title = 'This is the default title',
+	className = '',
+}: Props): JSX.Element  => (
 	<div>
 		<Head>
 			<title>{title}</title>
@@ -32,7 +37,7 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
 				</Link>
 			</nav>
 		</header>
-		{children}
+		<main className={className}>{children}</main>
 		<footer>
 			<hr />
 			<Link href="/">
