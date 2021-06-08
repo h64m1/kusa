@@ -12,6 +12,15 @@ export const today = (): string => {
 }
 
 /**
+ * Year (YYYY)
+ * @param {string} date date
+ * @returns year
+ */
+export const year = (date: string): number => {
+    return dayjs(date).year()
+}
+
+/**
  * month index (0 start)
  * @param {string} date date
  * @returns month index
