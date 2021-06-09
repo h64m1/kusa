@@ -1,3 +1,5 @@
+import * as Presenter from './presenter'
+
 type Props = {
 	/**
 	 * What class to be applied for parent node
@@ -56,5 +58,6 @@ export const StyledComponent: React.VFC<StyledProps> = (props) => {
 
 export const Container: React.VFC = () => {
     // TODO: implement logig to show 5 years up to this year
-	return <StyledComponent years={[]} selected={0} />
+	const years = Presenter.years()
+	return <StyledComponent years={years} selected={0} />
 }

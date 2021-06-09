@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react';
-import { SelectYear, SelectYearProps } from './index'
+import { SelectYear, SelectYearContainer, SelectYearProps } from './index'
 
 export default {
   title: 'components/SelectYear',
@@ -7,6 +7,7 @@ export default {
 } as Meta;
 
 const Template: Story<SelectYearProps> = (args) => <SelectYear {...args} />;
+const TemplateContainer: Story = () => <SelectYearContainer />;
 
 export const SelectYearTest = Template.bind({});
 SelectYearTest.args = {
@@ -20,3 +21,5 @@ SelectYearTest.args = {
     ],
     selected: 5,
 };
+
+export const SelectYearContainerTest = TemplateContainer.bind({});
