@@ -19,7 +19,7 @@ SelectYearTest.args = {
         '2021',
         'now',
     ],
-    selected: 5,
+    selected: 0,
 };
 
 export const SelectYearContainerTest = TemplateContainer.bind({});
