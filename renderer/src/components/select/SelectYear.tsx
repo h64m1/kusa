@@ -7,13 +7,13 @@ type CommonProps = {
 	 */
 	years: string[]
 	/**
-	 * Selected index
+	 * Selected year index
 	 */
-	selected: number
+	selectedYear: number
 	/**
-	 * set selected state
+	 * Change year
 	 */
-	setSelected: (index: number) => void
+	changeYear: (index: number) => void
 }
 
 type Props = {
@@ -31,7 +31,9 @@ const Component: React.VFC<Props> = (props) => {
 		<div className={props.className}>
 			{props.years.map((year, index) => {
 				const selected =
-					index === props.selected ? 'border-b-2 border-black' : ''
+					index === props.selectedYear
+						? 'border-b-2 border-black'
+						: ''
 				const className = `${baseClassName} ${selected}`
 				return (
 					// TODO: implement onClick action
@@ -39,7 +41,7 @@ const Component: React.VFC<Props> = (props) => {
 						key={index}
 						className={className}
 						onClick={() => {
-							props.setSelected(index)
+							props.changeYear(index)
 							console.debug('select year click', year, index)
 						}}
 					>
@@ -57,17 +59,21 @@ export const StyledComponent: React.VFC<StyledProps> = (props) => {
 		<Component
 			className={className}
 			years={props.years}
-			selected={props.selected}
-			setSelected={props.setSelected}
+			selectedYear={props.selectedYear}
+			changeYear={props.changeYear}
 		/>
 	)
 }
 
 export const Container: React.VFC = () => {
 	const years = Presenter.years()
+	const { year, changeYear } = Presenter.useSelectYear(years.length - 1)
 
-	// TODO: implement custom hook
-	const [selected, setSelected] = React.useState(years.length-1)
-
-	return <StyledComponent years={years} selected={selected} setSelected={setSelected} />
+	return (
+		<StyledComponent
+			years={years}
+			selectedYear={year}
+			changeYear={changeYear}
+		/>
+	)
 }

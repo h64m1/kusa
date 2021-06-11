@@ -1,6 +1,12 @@
+import React from 'react'
 import { day } from '../../../../lib/day'
 
 const YEAR_FROM = 5
+
+type UseSelectYearType = {
+	year: number
+	changeYear: (index: number) => void
+}
 
 /**
  * Array of years since 5 years ago
@@ -14,4 +20,15 @@ export const years = (): string[] => {
 	}
 	years.push('now')
 	return years
+}
+
+export const useSelectYear = (initialValue: number): UseSelectYearType => {
+	const [year, setYear] = React.useState(initialValue)
+
+	const changeYear = (index: number) => {
+		console.debug('changeYear', index)
+		setYear(index)
+	}
+
+	return { year, changeYear }
 }
