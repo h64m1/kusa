@@ -36,13 +36,11 @@ const Component: React.VFC<Props> = (props) => {
 						: ''
 				const className = `${baseClassName} ${selected}`
 				return (
-					// TODO: implement onClick action
 					<button
 						key={index}
 						className={className}
 						onClick={() => {
 							props.changeYear(index)
-							console.debug('select year click', year, index)
 						}}
 					>
 						{year}

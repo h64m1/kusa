@@ -26,7 +26,6 @@ export const useSelectYear = (initialValue: number): UseSelectYearType => {
 	const [year, setYear] = React.useState(initialValue)
 
 	const changeYear = (index: number) => {
-		console.debug('changeYear', index)
 		setYear(index)
 	}
 
