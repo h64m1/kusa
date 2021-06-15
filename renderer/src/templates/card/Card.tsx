@@ -28,10 +28,7 @@ const Component: React.VFC<Props> = (props) => {
 				<LabelContainer label="日付" />
 				<DatePickerContainer
 					selected={_date}
-					// TODO: add onChange action to store date from date-picker
-					onChange={() => {
-						// console.debug(e)
-					}}
+					readOnly={true}
 				/>
 			</div>
 			{/* activity list */}
