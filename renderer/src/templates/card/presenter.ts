@@ -1,6 +1,6 @@
 import React from 'react'
 
-type UseActivitiesReturnType = {
+export type UseActivitiesReturnType = {
 	activities: string[]
 	pushActivity: () => void
 	removeActivity: (index: number) => void

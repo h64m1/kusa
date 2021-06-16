@@ -10,17 +10,16 @@ export type ContainerProps = {
 	date: string
 }
 
-type Props = ContainerProps
+type Props = {
+	/**
+	 * Custom hook
+	 */
+	hook: Presenter.UseActivitiesReturnType
+} & ContainerProps
 export type StyledProps = Props
 
 const Component: React.VFC<Props> = (props) => {
-	const {
-		activities,
-		pushActivity,
-		removeActivity,
-		changeActivity,
-	} = Presenter.useActivities([])
-
+	const hook = props.hook
 	const _date = new Date(props.date)
 	return (
 		<div className="space-y-2">
@@ -29,18 +28,16 @@ const Component: React.VFC<Props> = (props) => {
 				<LabelContainer label="日付" />
 				<DatePickerContainer
 					selected={_date}
-					onChange={() => {
-						// console.debug(e)
-					}}
+					readOnly={true}
 				/>
 			</div>
 			{/* activity list */}
-			{activities === null || activities === undefined ? (
+			{hook.activities === null || hook.activities === undefined ? (
 				<></>
 			) : (
 				<div>
 					<LabelContainer label="アクティビティ" />
-					{activities.map((activity, i) => {
+					{hook.activities.map((activity, i) => {
 						const id = `${props.date}-activity-${i}`
 						return (
 							<div key={i} className="flex flex-row space-x-1">
@@ -49,14 +46,14 @@ const Component: React.VFC<Props> = (props) => {
 									id={id}
 									placeHolder="アクティビティ"
 									onChange={(e) => {
-										changeActivity(i, e.target.value)
+										hook.changeActivity(i, e.target.value)
 									}}
 								/>
 								{/* ボタン押下でアクティビティ削除 | TODO: Replace Del to trash icon */}
 								<button
 									className="hover:bg-gray-50 font-bold py-2 px-3 rounded w-1/12 text-left"
 									onClick={() => {
-										removeActivity(i)
+										hook.removeActivity(i)
 									}}
 								>
 									Del
@@ -68,7 +65,7 @@ const Component: React.VFC<Props> = (props) => {
 					<button
 						className="hover:bg-gray-100 font-bold py-2 px-4 rounded w-10/12 text-left"
 						onClick={() => {
-							pushActivity()
+							hook.pushActivity()
 						}}
 					>
 						+ New
@@ -80,9 +77,11 @@ const Component: React.VFC<Props> = (props) => {
 }
 
 export const StyledComponent: React.VFC<StyledProps> = (props) => {
-	return <Component date={props.date} />
+	return <Component date={props.date} hook={props.hook} />
 }
 
 export const Container: React.VFC<ContainerProps> = (props) => {
-	return <StyledComponent date={props.date} />
+	const hook = Presenter.useActivities([])
+
+	return <StyledComponent date={props.date} hook={hook} />
 }
