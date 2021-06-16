@@ -1,5 +1,5 @@
 import React from 'react'
-import { day } from '../../../../lib/day'
+import { day } from '../../../lib/day'
 
 const YEAR_FROM = 5
 
