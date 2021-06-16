@@ -12,4 +12,5 @@ export const DatePickerTest = Template.bind({})
 DatePickerTest.args = {
     value: '2021-05-01',
 	selected: new Date(),
+	readOnly: true,
 }

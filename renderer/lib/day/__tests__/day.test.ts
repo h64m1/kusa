@@ -12,6 +12,13 @@ test('test day library', () => {
     // Today
     expect(day.today()).toBe(getDate())
 
+    // year
+    expect(day.year('2021-06-01')).toBe(2021)
+
+    // month
+    expect(day.month('2021-01-01')).toBe(0)
+    expect(day.month('2021-11-01')).toBe(10)
+
     // Add
     // Long unit type
     expect(day.add('2021-04-05', 1, 'day')).toBe('2021-04-06')
@@ -26,6 +33,10 @@ test('test day library', () => {
     // Difference
     expect(day.diff('2021-04-01', '2020-04-01')).toBe(365)
     expect(day.diff('2021-05-01', '2021-05-01')).toBe(0)
+
+    // isSame
+    expect(day.isSame('2021-05-01', '2021-05-01')).toBe(true)
+    expect(day.isSame('2021-05-01', '2021-06-01')).toBe(false)
 
     // startOf/endOf
     expect(day.startOf('2021-05-04', 'week')).toBe('2021-05-02')
