@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
-import Link from 'next/link'
 import Layout from '../components/Layout'
+import { day } from '../lib/day'
+import { ActivityContainer } from '../src/templates/activity'
+import { CardContainer } from '../src/templates/card'
 
 const IndexPage = () => {
 	useEffect(() => {
@@ -14,15 +16,17 @@ const IndexPage = () => {
 		global.ipcRenderer.send('message', 'hi from next')
 	}
 
+	const endDate = day.today()
+	const beginDate = day.add(endDate, -1, 'year')
+
 	return (
-		<Layout title="Home | Next.js + TypeScript + Electron Example">
-			<h1>Hello Next.js 👋</h1>
-			<button onClick={onSayHiClick}>Say hi to electron</button>
-			<p>
-				<Link href="/about">
-					<a>About</a>
-				</Link>
-			</p>
+		<Layout title="Activity list" className="ml-8 flex flex-row space-x-4">
+			<ActivityContainer
+				beginDate={beginDate}
+				endDate={endDate}
+				stacks={[]}
+			/>
+			<CardContainer date={endDate} />
 		</Layout>
 	)
 }

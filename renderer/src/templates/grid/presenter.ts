@@ -1,4 +1,4 @@
-import { day } from '../../../../lib/day'
+import { day } from '../../../lib/day'
 
 export type GridCell = {
 	/**

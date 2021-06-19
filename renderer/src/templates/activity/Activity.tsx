@@ -25,7 +25,7 @@ export type StyledProps = GridContainerProps & CommonProps
 
 const Component: React.VFC<Props> = (props) => {
 	return (
-		<div className="w-max">
+		<div>
 			<MonthContainer months={props.months} />
 			<div className="flex flex-row space-x-1">
 				<WeekContainer />

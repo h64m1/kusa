@@ -1,5 +1,5 @@
 import { act, renderHook } from '@testing-library/react-hooks'
-import { day } from '../../../../../lib/day'
+import { day } from '../../../../lib/day'
 import * as Presenter from '../presenter'
 
 test('select presenter: years', () => {
