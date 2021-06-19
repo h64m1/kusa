@@ -22,7 +22,7 @@ const Component: React.VFC<Props> = (props) => {
 	const hook = props.hook
 	const _date = new Date(props.date)
 	return (
-		<div className="space-y-2">
+		<div className="space-y-2 w-full">
 			{/* date: add parent div to avoid space between label and date */}
 			<div>
 				<LabelContainer label="日付" />
