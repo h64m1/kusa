@@ -19,12 +19,17 @@ const IndexPage = () => {
 	const endDate = day.today()
 	const beginDate = day.add(endDate, -1, 'year')
 
+	const changeDate = (date: string) => {
+		console.debug('changeDate', date)
+	}
+
 	return (
 		<Layout title="Activity list" className="ml-8 flex flex-row space-x-4">
 			<ActivityContainer
 				beginDate={beginDate}
 				endDate={endDate}
 				stacks={[]}
+				changeDate={changeDate}
 			/>
 			<CardContainer date={endDate} />
 		</Layout>

@@ -2,6 +2,13 @@ import { CellContainer } from '../../components/cell'
 import { TooltipContainer } from '../../components/tooltip'
 import * as Presenter from './presenter'
 
+type CommonProps = {
+	/**
+	 * click event handler: change date
+	 */
+	changeDate: (date: string) => void
+}
+
 export type ContainerProps = {
 	/**
 	 * begin date: YYYY-MM-DD
@@ -15,11 +22,7 @@ export type ContainerProps = {
 	 * Active cell
 	 */
 	stacks: Presenter.GridCell[]
-	/**
-	 * click event handler: change date
-	 */
-	changeDate: (date: string) => void
-}
+} & CommonProps
 
 type Props = {
 	/**
@@ -42,11 +45,7 @@ type Props = {
 	 * Hide if hide props = true
 	 */
 	hide: boolean[]
-	/**
-	 * click event handler: change date
-	 */
-	changeDate: (date: string) => void
-}
+} & CommonProps
 
 export type StyledProps = Props
 

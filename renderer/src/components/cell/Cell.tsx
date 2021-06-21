@@ -25,7 +25,7 @@ export type ContainerProps = {
 	/**
 	 * click event handler: change date
 	 */
-	changeDate?: (date: string)  => void
+	changeDate?: (date: string) => void
 }
 
 type Props = {
