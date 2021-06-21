@@ -67,7 +67,6 @@ export const Container: React.VFC<ContainerProps> = (props) => {
 				return
 			}
 			props.changeDate(props.date)
-			console.debug('onClick', props.date)
 		}}
 	/>
 }
