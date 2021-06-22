@@ -1,11 +1,11 @@
-import { useEffect } from 'react'
+import React from 'react'
 import Layout from '../components/Layout'
 import { day } from '../lib/day'
 import { ActivityContainer } from '../src/templates/activity'
 import { CardContainer } from '../src/templates/card'
 
 const IndexPage = () => {
-	useEffect(() => {
+	React.useEffect(() => {
 		// add a listener to 'message' channel
 		global.ipcRenderer.addListener('message', (_event, args) => {
 			alert(args)
@@ -19,8 +19,11 @@ const IndexPage = () => {
 	const endDate = day.today()
 	const beginDate = day.add(endDate, -1, 'year')
 
-	const changeDate = (date: string) => {
-		console.debug('changeDate', date)
+	const [date, setDate] = React.useState(endDate)
+
+	const changeDate = (inputDate: string) => {
+		setDate(inputDate)
+		console.debug('changeDate', inputDate)
 	}
 
 	return (
@@ -31,7 +34,7 @@ const IndexPage = () => {
 				stacks={[]}
 				changeDate={changeDate}
 			/>
-			<CardContainer date={endDate} />
+			<CardContainer date={date} />
 		</Layout>
 	)
 }
