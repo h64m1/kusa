@@ -33,3 +33,11 @@ export const StyledComponent: React.VFC<StyledProps> = (props) => {
 		stackNormalized={props.stackNormalized}
 	/>
 }
+
+export const Container: React.VFC<ContainerProps> = (props) => {
+	return <StyledComponent
+		date={props.date}
+		stack={props.stack}
+		stackNormalized={props.stackNormalized}
+	/>
+}
