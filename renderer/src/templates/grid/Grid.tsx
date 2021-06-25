@@ -1,5 +1,4 @@
-import { CellContainer } from '../../components/cell'
-import { TooltipContainer } from '../../components/tooltip'
+import { CellGridContainer } from '../cellgrid'
 import * as Presenter from './presenter'
 
 type CommonProps = {
@@ -61,20 +60,14 @@ const Component: React.VFC<Props> = (props) => {
 				const date = e
 				const stack = props.stacks[i]
 				const stackNormalized = props.stacksNormalized[i]
-				const cell = (
-					<CellContainer
+
+				return (
+					<CellGridContainer
 						key={i}
 						date={date}
 						stack={stack}
 						stackNormalized={stackNormalized}
 						changeDate={props.changeDate}
-					/>
-				)
-				return (
-					<TooltipContainer
-						key={i}
-						tooltipMessage={`${stack} on ${date}`}
-						contents={cell}
 					/>
 				)
 			})}
