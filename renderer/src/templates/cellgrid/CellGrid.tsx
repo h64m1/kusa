@@ -1,12 +1,24 @@
+import { MouseEventHandler } from 'react'
 import { CellContainer, CellContainerProps } from '../../components/cell'
 import { TooltipContainer } from '../../components/tooltip'
 
-export type ContainerProps = CellContainerProps
+type CommonProps = {
+	/**
+	 * click action
+	 */
+	onClick: MouseEventHandler<HTMLDivElement>
+}
 
-type Props = ContainerProps
+export type ContainerProps = {
+	/**
+	 * click event handler: change date
+	 */
+	changeDate: (date: string) => void
+} & CellContainerProps
 
-export type StyledProps = {
-} & ContainerProps
+type Props = CellContainerProps & CommonProps
+
+export type StyledProps = Props
 
 const Component: React.VFC<Props> = (props) => {
 	const cell = (
@@ -17,7 +29,7 @@ const Component: React.VFC<Props> = (props) => {
 		/>
 	)
 	return (
-		<div>
+		<div onClick={props.onClick}>
 			<TooltipContainer
 				tooltipMessage={`${props.stack} on ${props.date}`}
 				contents={cell}
@@ -27,17 +39,25 @@ const Component: React.VFC<Props> = (props) => {
 }
 
 export const StyledComponent: React.VFC<StyledProps> = (props) => {
-	return <Component
-		date={props.date}
-		stack={props.stack}
-		stackNormalized={props.stackNormalized}
-	/>
+	return (
+		<Component
+			date={props.date}
+			stack={props.stack}
+			stackNormalized={props.stackNormalized}
+			onClick={props.onClick}
+		/>
+	)
 }
 
 export const Container: React.VFC<ContainerProps> = (props) => {
-	return <StyledComponent
-		date={props.date}
-		stack={props.stack}
-		stackNormalized={props.stackNormalized}
-	/>
+	return (
+		<StyledComponent
+			date={props.date}
+			stack={props.stack}
+			stackNormalized={props.stackNormalized}
+			onClick={() => {
+				props.changeDate(props.date)
+			}}
+		/>
+	)
 }
