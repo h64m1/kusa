@@ -1,6 +1,13 @@
 import { CellGridContainer } from '../cellgrid'
 import * as Presenter from './presenter'
 
+type CommonProps = {
+	/**
+	 * click event handler: change date
+	 */
+	changeDate: (date: string) => void
+}
+
 export type ContainerProps = {
 	/**
 	 * begin date: YYYY-MM-DD
@@ -14,7 +21,7 @@ export type ContainerProps = {
 	 * Active cell
 	 */
 	stacks: Presenter.GridCell[]
-}
+} & CommonProps
 
 type Props = {
 	/**
@@ -37,7 +44,7 @@ type Props = {
 	 * Hide if hide props = true
 	 */
 	hide: boolean[]
-}
+} & CommonProps
 
 export type StyledProps = Props
 
@@ -60,6 +67,7 @@ const Component: React.VFC<Props> = (props) => {
 						date={date}
 						stack={stack}
 						stackNormalized={stackNormalized}
+						changeDate={props.changeDate}
 					/>
 				)
 			})}
@@ -75,6 +83,7 @@ export const StyledComponent: React.VFC<StyledProps> = (props) => {
 			stacks={props.stacks}
 			stacksNormalized={props.stacksNormalized}
 			hide={props.hide}
+			changeDate={props.changeDate}
 		/>
 	)
 }
@@ -95,6 +104,7 @@ export const Container: React.VFC<ContainerProps> = (props) => {
 			stacks={stacks}
 			stacksNormalized={stacksNormalized}
 			hide={hide}
+			changeDate={props.changeDate}
 		/>
 	)
 }

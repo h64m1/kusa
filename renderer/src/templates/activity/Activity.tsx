@@ -33,6 +33,7 @@ const Component: React.VFC<Props> = (props) => {
 					beginDate={props.beginDate}
 					endDate={props.endDate}
 					stacks={props.stacks}
+					changeDate={props.changeDate}
 				/>
 			</div>
 			<div className="mt-2 flex justify-end">
@@ -60,5 +61,7 @@ export const Container: React.VFC<ContainerProps> = (props) => {
 	// Trim first & last elements
 	const months = Presenter.trim(_months)
 
-	return <StyledComponent months={months} {...props} />
+	return (
+		<StyledComponent months={months} {...props} />
+	)
 }
