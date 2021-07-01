@@ -4,14 +4,14 @@ import { WeekContainer } from '../../components/week'
 import { GridContainer, GridContainerProps } from '../grid'
 import * as Presenter from './presenter'
 
+export type ContainerProps = GridContainerProps
+
 type CommonProps = {
 	/**
 	 * What months to be shown on top of grid container
 	 */
 	months: string[]
 }
-
-export type ContainerProps = GridContainerProps
 
 type Props = {
 	/**

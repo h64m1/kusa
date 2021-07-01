@@ -1,8 +1,8 @@
 import React from 'react'
 import Layout from '../components/Layout'
 import { day } from '../lib/day'
-import { ActivityContainer } from '../src/templates/activity'
-import { CardContainer } from '../src/templates/card'
+import { KusaContainer } from '../src/templates/kusa'
+import * as Mock from './mock'
 
 const IndexPage = () => {
 	React.useEffect(() => {
@@ -18,23 +18,20 @@ const IndexPage = () => {
 
 	const endDate = day.today()
 	const beginDate = day.add(endDate, -1, 'year')
-
-	const [date, setDate] = React.useState(endDate)
-
-	const changeDate = (inputDate: string) => {
-		setDate(inputDate)
-		console.debug('changeDate', inputDate)
-	}
+	// show mock stacks
+	// TODO: implement actual input data
+	const stacks = Mock.stacks(beginDate, endDate)
 
 	return (
-		<Layout title="Activity list" className="ml-8 flex flex-row space-x-4">
-			<ActivityContainer
+		<Layout title="Activity list">
+			<KusaContainer
 				beginDate={beginDate}
 				endDate={endDate}
-				stacks={[]}
-				changeDate={changeDate}
+				stacks={stacks}
+				onChangeStacks={(stacks) => {
+					console.debug('onChangeStacks', stacks)
+				}}
 			/>
-			<CardContainer date={date} />
 		</Layout>
 	)
 }

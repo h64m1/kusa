@@ -1,13 +1,6 @@
 import { CellGridContainer } from '../cellgrid'
 import * as Presenter from './presenter'
 
-type CommonProps = {
-	/**
-	 * click event handler: change date
-	 */
-	changeDate: (date: string) => void
-}
-
 export type ContainerProps = {
 	/**
 	 * begin date: YYYY-MM-DD
@@ -21,7 +14,11 @@ export type ContainerProps = {
 	 * Active cell
 	 */
 	stacks: Presenter.GridCell[]
-} & CommonProps
+	/**
+	 * click event handler: change date
+	 */
+	changeDate: (date: string) => void
+}
 
 type Props = {
 	/**
@@ -44,7 +41,11 @@ type Props = {
 	 * Hide if hide props = true
 	 */
 	hide: boolean[]
-} & CommonProps
+	/**
+	 * click event handler: change date
+	 */
+	changeDate: (date: string) => void
+}
 
 export type StyledProps = Props
 
