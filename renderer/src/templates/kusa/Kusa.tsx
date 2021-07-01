@@ -3,8 +3,18 @@ import { ActivityContainer } from '../activity'
 import { CardContainer } from '../card'
 import { GridContainerProps } from '../grid'
 import { day } from '../../../lib/day'
+import * as GridPresenter from '../grid/presenter'
 
-export type ContainerProps = {}
+export type ContainerProps = {
+	/**
+	 * Activity cell
+	 */
+	stacks: GridPresenter.GridCell[]
+	/**
+	 * change event for activity cell
+	 */
+	onChangeStacks: (stacks: GridPresenter.GridCell[]) => void
+}
 
 type Props = {
 	/**
@@ -45,6 +55,9 @@ export const Container: React.VFC<ContainerProps> = (props) => {
 	const beginDate = day.add(endDate, -1, 'year')
 
 	const [date, setDate] = React.useState(endDate)
+	const stacks = props.stacks
+	// TODO: implement on change event for stacks
+	// props.onChangeStacks
 
 	const changeDate = (inputDate: string) => {
 		setDate(inputDate)
@@ -55,7 +68,7 @@ export const Container: React.VFC<ContainerProps> = (props) => {
 		<StyledComponent
 			beginDate={beginDate}
 			endDate={endDate}
-			stacks={[]}
+			stacks={stacks}
 			changeDate={changeDate}
 			date={date}
 		/>
