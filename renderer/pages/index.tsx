@@ -2,6 +2,7 @@ import React from 'react'
 import Layout from '../components/Layout'
 import { day } from '../lib/day'
 import { KusaContainer } from '../src/templates/kusa'
+import * as Mock from './mock'
 
 const IndexPage = () => {
 	React.useEffect(() => {
@@ -15,16 +16,18 @@ const IndexPage = () => {
 		global.ipcRenderer.send('message', 'hi from next')
 	}
 
-	// TODO: create state for stacks
 	const endDate = day.today()
 	const beginDate = day.add(endDate, -1, 'year')
+	// show mock stacks
+	// TODO: implement actual input data
+	const stacks = Mock.stacks(beginDate, endDate)
 
 	return (
 		<Layout title="Activity list">
 			<KusaContainer
 				beginDate={beginDate}
 				endDate={endDate}
-				stacks={[]}
+				stacks={stacks}
 				onChangeStacks={(stacks) => {
 					console.debug('onChangeStacks', stacks)
 				}}
