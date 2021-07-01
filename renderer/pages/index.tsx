@@ -1,5 +1,6 @@
 import React from 'react'
 import Layout from '../components/Layout'
+import { day } from '../lib/day'
 import { KusaContainer } from '../src/templates/kusa'
 
 const IndexPage = () => {
@@ -15,10 +16,14 @@ const IndexPage = () => {
 	}
 
 	// TODO: create state for stacks
+	const endDate = day.today()
+	const beginDate = day.add(endDate, -1, 'year')
 
 	return (
 		<Layout title="Activity list">
 			<KusaContainer
+				beginDate={beginDate}
+				endDate={endDate}
 				stacks={[]}
 				onChangeStacks={(stacks) => {
 					console.debug('onChangeStacks', stacks)
