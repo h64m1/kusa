@@ -8,14 +8,22 @@ export type ContainerProps = {
 	 * date (YYYY-MM-DD)
 	 */
 	date: string
+	/**
+	 * Change number of activities
+	 */
+	onChangeActivities: (activities: number) => void
 }
 
 type Props = {
 	/**
+	 * date (YYYY-MM-DD)
+	 */
+	date: string
+	/**
 	 * Custom hook
 	 */
 	hook: Presenter.UseActivitiesReturnType
-} & ContainerProps
+}
 export type StyledProps = Props
 
 const Component: React.VFC<Props> = (props) => {
@@ -26,10 +34,7 @@ const Component: React.VFC<Props> = (props) => {
 			{/* date: add parent div to avoid space between label and date */}
 			<div>
 				<LabelContainer label="日付" />
-				<DatePickerContainer
-					selected={_date}
-					readOnly={true}
-				/>
+				<DatePickerContainer selected={_date} readOnly={true} />
 			</div>
 			{/* activity list */}
 			{hook.activities === null || hook.activities === undefined ? (
@@ -77,11 +82,23 @@ const Component: React.VFC<Props> = (props) => {
 }
 
 export const StyledComponent: React.VFC<StyledProps> = (props) => {
-	return <Component date={props.date} hook={props.hook} />
+	return (
+		<Component
+			date={props.date}
+			hook={props.hook}
+		/>
+	)
 }
 
 export const Container: React.VFC<ContainerProps> = (props) => {
 	const hook = Presenter.useActivities([])
+	// change number of activities
+	props.onChangeActivities(hook.activities.length)
 
-	return <StyledComponent date={props.date} hook={hook} />
+	return (
+		<StyledComponent
+			date={props.date}
+			hook={hook}
+		/>
+	)
 }

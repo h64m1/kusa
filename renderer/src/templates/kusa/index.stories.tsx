@@ -1,6 +1,7 @@
 
 import { Meta, Story } from '@storybook/react'
 import { Kusa, KusaContainer, KusaContainerProps, KusaProps } from './index'
+import * as GridPresenter from '../grid/presenter'
 
 export default {
 	title: 'templates/Kusa',
@@ -15,9 +16,21 @@ KusaTest.args = {
 	beginDate: '2020-06-01',
 	endDate: '2021-06-01',
 	stacks: [],
-	date: '2021-06-01'
+	changeDate: (date: string) => {
+		console.debug('changeDate', date)
+	},
+	date: '2021-06-01',
+	onChangeActivities: (activities: number) => {
+		console.debug('onChangeActivities', activities)
+	}
 }
 
 export const KusaContainerTest = TemplateContainer.bind({})
 KusaContainerTest.args = {
+	beginDate: '2020-06-01',
+	endDate: '2021-06-01',
+	stacks: [],
+	onChangeStacks: (stack: GridPresenter.GridCell) => {
+		console.debug('onChangeStacks', stack)
+	}
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import Layout from '../components/Layout'
 import { day } from '../lib/day'
 import { KusaContainer } from '../src/templates/kusa'
+import * as GridPresenter from '../src/templates/grid/presenter'
 import * as Mock from './mock'
 
 const IndexPage = () => {
@@ -28,8 +29,11 @@ const IndexPage = () => {
 				beginDate={beginDate}
 				endDate={endDate}
 				stacks={stacks}
-				onChangeStacks={(stacks) => {
-					console.debug('onChangeStacks', stacks)
+				onChangeStacks={(stack: GridPresenter.GridCell) => {
+					// TODO: change stack for the target date
+					const index = stacks.findIndex(e => e.date === stack.date)
+
+					console.debug('onChangeStacks', stack, 'find index', index)
 				}}
 			/>
 		</Layout>

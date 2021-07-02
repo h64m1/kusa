@@ -1,6 +1,6 @@
 import React from 'react'
 import { ActivityContainer, ActivityContainerProps } from '../activity'
-import { CardContainer } from '../card'
+import { CardContainer, CardContainerProps } from '../card'
 import * as GridPresenter from '../grid/presenter'
 
 export type ContainerProps = {
@@ -19,15 +19,10 @@ export type ContainerProps = {
 	/**
 	 * change event for activity cell
 	 */
-	onChangeStacks: (stacks: GridPresenter.GridCell[]) => void
+	onChangeStacks: (stack: GridPresenter.GridCell) => void
 }
 
-type Props = ActivityContainerProps & {
-	/**
-	 * What date to be shown in card component
-	 */
-	date: string
-}
+type Props = ActivityContainerProps & CardContainerProps
 export type StyledProps = Props
 
 const Component: React.VFC<Props> = (props) => {
@@ -39,7 +34,10 @@ const Component: React.VFC<Props> = (props) => {
 				stacks={props.stacks}
 				changeDate={props.changeDate}
 			/>
-			<CardContainer date={props.date} />
+			<CardContainer
+				date={props.date}
+				onChangeActivities={props.onChangeActivities}
+			/>
 		</div>
 	)
 }
@@ -52,28 +50,37 @@ export const StyledComponent: React.VFC<StyledProps> = (props) => {
 			stacks={props.stacks}
 			changeDate={props.changeDate}
 			date={props.date}
+			onChangeActivities={props.onChangeActivities}
 		/>
 	)
 }
 
 export const Container: React.VFC<ContainerProps> = (props) => {
 	const [date, setDate] = React.useState(props.endDate)
-	const stacks = props.stacks
-	// TODO: implement on change event for stacks
-	// props.onChangeStacks
+	const [stack, setActivities] = React.useState(0)
+
+	const changeActivities = (activities: number) => {
+		setActivities(activities)
+	}
 
 	const changeDate = (inputDate: string) => {
 		setDate(inputDate)
 		console.debug('changeDate', inputDate)
+
+		props.onChangeStacks({
+			date: date,
+			stack: stack
+		})
 	}
 
 	return (
 		<StyledComponent
 			beginDate={props.beginDate}
 			endDate={props.endDate}
-			stacks={stacks}
+			stacks={props.stacks}
 			changeDate={changeDate}
 			date={date}
+			onChangeActivities={changeActivities}
 		/>
 	)
 }
