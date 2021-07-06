@@ -1,4 +1,7 @@
 import React from 'react'
+import { db } from '../../../lib/db'
+
+type RecordType = string[]
 
 export type UseActivitiesReturnType = {
 	activities: string[]
@@ -7,10 +10,29 @@ export type UseActivitiesReturnType = {
 	changeActivity: (index: number, value: string) => void
 }
 
-export const useActivities = (
-	initialValue: string[],
-): UseActivitiesReturnType => {
+export const useActivities = (date: string): UseActivitiesReturnType => {
+	const initialValue: string[] = []
 	const [activities, setActivities] = React.useState(initialValue)
+
+	// Get activities from db
+	React.useEffect(() => {
+		let didRead = false
+		;(async () => {
+			const record = (await db.read(date)) as RecordType
+
+			if (!didRead) {
+				const values = record === null ? [] : record
+
+				// init default value
+				console.debug('init default activities')
+				setActivities(() => [...values])
+			}
+		})()
+
+		return () => {
+			didRead = true
+		}
+	}, [date])
 
 	// push new activity
 	const pushActivity = () => {
