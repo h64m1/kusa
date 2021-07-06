@@ -30,7 +30,7 @@ const init = () => {
  * @param {string} key key
  * @returns item
  */
-export const get = (key: string): Promise<unknown> => {
+const get = (key: string): Promise<unknown> => {
 	// Init if db is empty
 	init()
 	return _db.getItem(key)
@@ -41,8 +41,37 @@ export const get = (key: string): Promise<unknown> => {
  * @param {string} key key
  * @param {unknown} value stored value
  */
-export const put = (key: string, value: unknown) => {
+const put = (key: string, value: unknown) => {
 	// Init if db is empty
 	init()
 	_db.setItem(key, value)
+}
+
+/**
+ * Read value from db
+ * @param {string} key key
+ * @returns value
+ */
+export const read = async (key: string): Promise<unknown> => {
+	try {
+		const value = await get(key)
+		console.debug('db.read | key', key, '| value', value)
+		return value
+	} catch (error) {
+		console.error('Error: db.read | ', error)
+	}
+}
+
+/**
+ * Write value to db for key
+ * @param {string} key key
+ * @param {unknown} value stored value
+ */
+export const write = async (key: string, value: unknown): Promise<void> => {
+	try {
+		await put(key, value)
+		console.debug('db.write | key', key, '| value', value)
+	} catch (error) {
+		console.error('Error: db.write | ', error)
+	}
 }
