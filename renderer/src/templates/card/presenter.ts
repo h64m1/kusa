@@ -1,24 +1,22 @@
 import React from 'react'
 import { db } from '../../../lib/db'
 
-type RecordType = string[]
-
 export type UseActivitiesReturnType = {
-	activities: string[]
+	activities: db.DbActivityType
 	pushActivity: () => void
 	removeActivity: (index: number) => void
 	changeActivity: (index: number, value: string) => void
 }
 
 export const useActivities = (date: string): UseActivitiesReturnType => {
-	const initialValue: string[] = []
+	const initialValue: db.DbRecordType = []
 	const [activities, setActivities] = React.useState(initialValue)
 
 	// Get activities from db
 	React.useEffect(() => {
 		let didRead = false
 		;(async () => {
-			const record = (await db.read(date)) as RecordType
+			const record = await db.readActivity(date)
 
 			if (!didRead) {
 				const values = record === null ? [] : record
