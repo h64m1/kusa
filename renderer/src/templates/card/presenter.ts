@@ -34,14 +34,18 @@ export const useActivities = (date: string): UseActivitiesReturnType => {
 
 	// push new activity
 	const pushActivity = () => {
-		setActivities(() => [...activities, ''])
+		const newActivities = [...activities, '']
+		setActivities(() => newActivities)
+		db.write(date, newActivities)
 	}
 
 	// remove specified element from activities
 	const removeActivity = (index: number) => {
 		if (activities.length > 1) {
 			// do not remove last element
-			setActivities([...activities.filter((_, j) => j !== index)])
+			const newActivities = [...activities.filter((_, j) => j !== index)]
+			setActivities(newActivities)
+			db.write(date, newActivities)
 		}
 	}
 
@@ -49,6 +53,7 @@ export const useActivities = (date: string): UseActivitiesReturnType => {
 	const changeActivity = (index: number, value: string) => {
 		activities[index] = value
 		setActivities(() => [...activities])
+		db.write(date, activities)
 	}
 
 	return { activities, pushActivity, removeActivity, changeActivity }
