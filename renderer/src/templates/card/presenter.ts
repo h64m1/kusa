@@ -9,7 +9,7 @@ export type UseActivitiesReturnType = {
 }
 
 export const useActivities = (date: string): UseActivitiesReturnType => {
-	const initialValue: db.DbRecordType = []
+	const initialValue: db.DbActivityType = []
 	const [activities, setActivities] = React.useState(initialValue)
 
 	// Get activities from db
