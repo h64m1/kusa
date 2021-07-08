@@ -1,5 +1,5 @@
 import localforage from 'localforage'
-import * as config from '../../utils/config'
+import { config } from '../../utils'
 
 let _db: LocalForage
 
@@ -7,8 +7,12 @@ export type DbDateType = {
 	beginDate: string
 	endDate: string
 }
+export type DbCellType = {
+	date: string
+	stack: number
+}
 export type DbActivityType = string[]
-export type DbRecordType = DbDateType | DbActivityType | null
+export type DbRecordType = DbDateType | DbCellType[] | DbActivityType | null
 
 /**
  * Create localForae instance
@@ -71,12 +75,28 @@ export const read = async (key: string): Promise<DbRecordType> => {
 }
 
 /**
- * true if item is Array
+ * Use to check whether the item is DbActivityType or not
  * @param {DbRecordType} item db value
  * @returns true if item is DbActivityType
  */
 const isActivity = (item: DbRecordType): item is DbActivityType =>
-	item !== null && item instanceof Array
+	item !== null &&
+	item instanceof Array &&
+	item.length > 0 &&
+	typeof item[0] === 'string'
+
+/**
+ * Use to check whether the item is DbCellType or not
+ * @param {DbRecordType} item db value
+ * @returns true if item is DbCellType
+ */
+const isCell = (item: DbRecordType): item is DbCellType[] =>
+	item !== null &&
+	item instanceof Array &&
+	item.length > 0 &&
+	typeof item[0] === 'object' &&
+	typeof (item[0] as DbCellType).date === 'string' &&
+	typeof (item[0] as DbCellType).stack === 'number'
 
 /**
  * Get activity list from db
@@ -88,6 +108,20 @@ export const readActivity = async (
 ): Promise<DbActivityType | null> => {
 	const value = await read(key)
 	if (isActivity(value)) {
+		return value
+	}
+
+	return null
+}
+
+/**
+ * Get cell from db
+ * @param {string} key key
+ * @returns list of cells
+ */
+export const readCellList = async (): Promise<DbCellType[] | null> => {
+	const value = await read(config.CELL_KEY)
+	if (isCell(value)) {
 		return value
 	}
 
