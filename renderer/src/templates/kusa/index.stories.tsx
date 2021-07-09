@@ -1,7 +1,7 @@
 
 import { Meta, Story } from '@storybook/react'
 import { Kusa, KusaContainer, KusaContainerProps, KusaProps } from './index'
-import * as GridPresenter from '../grid/presenter'
+import { GridPresenter } from '../grid'
 
 export default {
 	title: 'templates/Kusa',

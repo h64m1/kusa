@@ -1,5 +1,5 @@
 import { day } from '../lib/day'
-import { GridCell } from '../src/templates/grid/presenter'
+import { GridCell } from '../src/templates/grid'
 
 /**
  * Generate stacks mock data from beginDate to endDate

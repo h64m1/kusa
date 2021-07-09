@@ -1,7 +1,7 @@
 import React from 'react'
 import { ActivityContainer, ActivityContainerProps } from '../activity'
 import { CardContainer, CardContainerProps } from '../card'
-import * as GridPresenter from '../grid/presenter'
+import { GridPresenter } from '../grid'
 
 export type ContainerProps = {
 	/**

@@ -91,7 +91,7 @@ export const StyledComponent: React.VFC<StyledProps> = (props) => {
 }
 
 export const Container: React.VFC<ContainerProps> = (props) => {
-	const hook = Presenter.useActivities([])
+	const hook = Presenter.useActivities(props.date)
 	// change number of activities
 	props.onChangeActivities(hook.activities.length)
 

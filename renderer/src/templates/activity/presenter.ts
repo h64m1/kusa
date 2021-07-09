@@ -1,5 +1,5 @@
 import { day } from '../../../lib/day'
-import { gridCells } from '../grid/presenter'
+import { GridPresenter } from '../grid'
 
 const monthNames = [
 	'Jan',
@@ -51,7 +51,7 @@ export const trim = (months: string[]): string[] => {
  * @returns array of months
  */
 export const months = (beginDate: string, endDate: string): string[] => {
-	const dates = gridCells(beginDate, endDate)
+	const dates = GridPresenter.gridCells(beginDate, endDate)
 
 	const months: string[] = []
 	const length = dates.length
