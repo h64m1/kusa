@@ -1,7 +1,7 @@
 import { LegendContainer } from '../../components/legend'
 import { MonthContainer } from '../../components/month'
 import { WeekContainer } from '../../components/week'
-import { GridContainer, GridContainerProps } from '../grid'
+import { GridContainer, GridContainerProps, GridPresenter } from '../grid'
 import * as Presenter from './presenter'
 
 export type ContainerProps = GridContainerProps
@@ -57,7 +57,7 @@ export const StyledComponent: React.VFC<StyledProps> = (props) => {
 
 export const Container: React.VFC<ContainerProps> = (props) => {
 	// Show months (Jan, Feb, ...) on grid cells
-	const _months = Presenter.months(props.beginDate, props.endDate)
+	const _months = GridPresenter.months(props.beginDate, props.endDate)
 	// Trim first & last elements
 	const months = Presenter.trim(_months)
 
